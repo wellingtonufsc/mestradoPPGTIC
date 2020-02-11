@@ -13,21 +13,20 @@ const depth = 3;
 const minWeightMagnitude = 9;
 const tag = 'HAMILTONTCCMESSAGE';
 
-const transfers = [
-    {
-        value: 0,
-        address: outputAddress,
-        tag: tag,
-        message: ''
-    }
-]
-
 module.exports = {
     
     async index (req, res) {
 
         const { mensagem } = req.body;
-        transfers.message =  await Converter.asciiToTrytes(mensagem);
+
+        const transfers = [
+            {
+                value: 0,
+                address: outputAddress,
+                tag: tag,
+                message: await Converter.asciiToTrytes(mensagem)
+            }
+        ]
 
         iota.prepareTransfers(seed, transfers)
             .then(trytes => iota.sendTrytes(trytes, depth, minWeightMagnitude))
