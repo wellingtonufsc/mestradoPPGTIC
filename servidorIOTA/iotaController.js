@@ -11,13 +11,15 @@ const seed = 'WUXYHYPKGITMX9ONXOJHSBCVYUJALPCXEUFJYIJQCOZIWJEZIYDC9CNLXUOEQHQWFN
 const outputAddress = 'XVFJNZOZXGYWR9HFYG9WCJTLZ9HUZOPVAIIYIQNNYVVXG9VQQMKDCSIRIRQVXPBEVE99SAWGFJAWCLSHCTNONGQWDW';
 const depth = 3;
 const minWeightMagnitude = 9;
-const tag = 'HAMILTONTCCFIRSTMESSAGE';
+const tag = 'HAMILTONTCCTOKENMESSAGE';
 
 module.exports = {
     
     async index (req, res) {
 
-        const { mensagem } = req.body;
+        const { temp, humi, co2, lat, lon } = req.body;
+
+        const mensagem = temp.concat(humi, co2, lat, lon);
 
         const transfers = [
             {
