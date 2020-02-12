@@ -1,0 +1,3723 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*! ../../errors */
+
+/*! ../../guards */
+
+/*! ../../modules/_core */
+
+/*! ../../modules/_wks-ext */
+
+/*! ../../modules/es6.promise */
+
+/*! ../../modules/es7.array.includes */
+
+/*! ../../modules/es7.object.entries */
+
+/*! ../../modules/es7.object.get-own-property-descriptors */
+
+/*! ../../modules/es7.object.values */
+
+/*! ../../modules/es7.promise.finally */
+
+/*! ../../modules/es7.string.pad-end */
+
+/*! ../../modules/es7.string.pad-start */
+
+/*! ../../modules/es7.symbol.async-iterator */
+
+/*! ../../typed-array */
+
+/*! ../../types */
+
+/*! ../../utils */
+
+/*! ../encodings */
+
+/*! ../lib/mam */
+
+/*! ../modules/_core */
+
+/*! ../modules/es6.array.copy-within */
+
+/*! ../modules/es6.array.every */
+
+/*! ../modules/es6.array.fill */
+
+/*! ../modules/es6.array.filter */
+
+/*! ../modules/es6.array.find */
+
+/*! ../modules/es6.array.find-index */
+
+/*! ../modules/es6.array.for-each */
+
+/*! ../modules/es6.array.from */
+
+/*! ../modules/es6.array.index-of */
+
+/*! ../modules/es6.array.is-array */
+
+/*! ../modules/es6.array.iterator */
+
+/*! ../modules/es6.array.join */
+
+/*! ../modules/es6.array.last-index-of */
+
+/*! ../modules/es6.array.map */
+
+/*! ../modules/es6.array.of */
+
+/*! ../modules/es6.array.reduce */
+
+/*! ../modules/es6.array.reduce-right */
+
+/*! ../modules/es6.array.slice */
+
+/*! ../modules/es6.array.some */
+
+/*! ../modules/es6.array.sort */
+
+/*! ../modules/es6.array.species */
+
+/*! ../modules/es6.date.now */
+
+/*! ../modules/es6.date.to-iso-string */
+
+/*! ../modules/es6.date.to-json */
+
+/*! ../modules/es6.date.to-primitive */
+
+/*! ../modules/es6.date.to-string */
+
+/*! ../modules/es6.function.bind */
+
+/*! ../modules/es6.function.has-instance */
+
+/*! ../modules/es6.function.name */
+
+/*! ../modules/es6.map */
+
+/*! ../modules/es6.math.acosh */
+
+/*! ../modules/es6.math.asinh */
+
+/*! ../modules/es6.math.atanh */
+
+/*! ../modules/es6.math.cbrt */
+
+/*! ../modules/es6.math.clz32 */
+
+/*! ../modules/es6.math.cosh */
+
+/*! ../modules/es6.math.expm1 */
+
+/*! ../modules/es6.math.fround */
+
+/*! ../modules/es6.math.hypot */
+
+/*! ../modules/es6.math.imul */
+
+/*! ../modules/es6.math.log10 */
+
+/*! ../modules/es6.math.log1p */
+
+/*! ../modules/es6.math.log2 */
+
+/*! ../modules/es6.math.sign */
+
+/*! ../modules/es6.math.sinh */
+
+/*! ../modules/es6.math.tanh */
+
+/*! ../modules/es6.math.trunc */
+
+/*! ../modules/es6.number.constructor */
+
+/*! ../modules/es6.number.epsilon */
+
+/*! ../modules/es6.number.is-finite */
+
+/*! ../modules/es6.number.is-integer */
+
+/*! ../modules/es6.number.is-nan */
+
+/*! ../modules/es6.number.is-safe-integer */
+
+/*! ../modules/es6.number.max-safe-integer */
+
+/*! ../modules/es6.number.min-safe-integer */
+
+/*! ../modules/es6.number.parse-float */
+
+/*! ../modules/es6.number.parse-int */
+
+/*! ../modules/es6.number.to-fixed */
+
+/*! ../modules/es6.number.to-precision */
+
+/*! ../modules/es6.object.assign */
+
+/*! ../modules/es6.object.create */
+
+/*! ../modules/es6.object.define-properties */
+
+/*! ../modules/es6.object.define-property */
+
+/*! ../modules/es6.object.freeze */
+
+/*! ../modules/es6.object.get-own-property-descriptor */
+
+/*! ../modules/es6.object.get-own-property-names */
+
+/*! ../modules/es6.object.get-prototype-of */
+
+/*! ../modules/es6.object.is */
+
+/*! ../modules/es6.object.is-extensible */
+
+/*! ../modules/es6.object.is-frozen */
+
+/*! ../modules/es6.object.is-sealed */
+
+/*! ../modules/es6.object.keys */
+
+/*! ../modules/es6.object.prevent-extensions */
+
+/*! ../modules/es6.object.seal */
+
+/*! ../modules/es6.object.set-prototype-of */
+
+/*! ../modules/es6.object.to-string */
+
+/*! ../modules/es6.parse-float */
+
+/*! ../modules/es6.parse-int */
+
+/*! ../modules/es6.promise */
+
+/*! ../modules/es6.reflect.apply */
+
+/*! ../modules/es6.reflect.construct */
+
+/*! ../modules/es6.reflect.define-property */
+
+/*! ../modules/es6.reflect.delete-property */
+
+/*! ../modules/es6.reflect.enumerate */
+
+/*! ../modules/es6.reflect.get */
+
+/*! ../modules/es6.reflect.get-own-property-descriptor */
+
+/*! ../modules/es6.reflect.get-prototype-of */
+
+/*! ../modules/es6.reflect.has */
+
+/*! ../modules/es6.reflect.is-extensible */
+
+/*! ../modules/es6.reflect.own-keys */
+
+/*! ../modules/es6.reflect.prevent-extensions */
+
+/*! ../modules/es6.reflect.set */
+
+/*! ../modules/es6.reflect.set-prototype-of */
+
+/*! ../modules/es6.regexp.constructor */
+
+/*! ../modules/es6.regexp.exec */
+
+/*! ../modules/es6.regexp.flags */
+
+/*! ../modules/es6.regexp.match */
+
+/*! ../modules/es6.regexp.replace */
+
+/*! ../modules/es6.regexp.search */
+
+/*! ../modules/es6.regexp.split */
+
+/*! ../modules/es6.regexp.to-string */
+
+/*! ../modules/es6.set */
+
+/*! ../modules/es6.string.anchor */
+
+/*! ../modules/es6.string.big */
+
+/*! ../modules/es6.string.blink */
+
+/*! ../modules/es6.string.bold */
+
+/*! ../modules/es6.string.code-point-at */
+
+/*! ../modules/es6.string.ends-with */
+
+/*! ../modules/es6.string.fixed */
+
+/*! ../modules/es6.string.fontcolor */
+
+/*! ../modules/es6.string.fontsize */
+
+/*! ../modules/es6.string.from-code-point */
+
+/*! ../modules/es6.string.includes */
+
+/*! ../modules/es6.string.italics */
+
+/*! ../modules/es6.string.iterator */
+
+/*! ../modules/es6.string.link */
+
+/*! ../modules/es6.string.raw */
+
+/*! ../modules/es6.string.repeat */
+
+/*! ../modules/es6.string.small */
+
+/*! ../modules/es6.string.starts-with */
+
+/*! ../modules/es6.string.strike */
+
+/*! ../modules/es6.string.sub */
+
+/*! ../modules/es6.string.sup */
+
+/*! ../modules/es6.string.trim */
+
+/*! ../modules/es6.symbol */
+
+/*! ../modules/es6.typed.array-buffer */
+
+/*! ../modules/es6.typed.data-view */
+
+/*! ../modules/es6.typed.float32-array */
+
+/*! ../modules/es6.typed.float64-array */
+
+/*! ../modules/es6.typed.int16-array */
+
+/*! ../modules/es6.typed.int32-array */
+
+/*! ../modules/es6.typed.int8-array */
+
+/*! ../modules/es6.typed.uint16-array */
+
+/*! ../modules/es6.typed.uint32-array */
+
+/*! ../modules/es6.typed.uint8-array */
+
+/*! ../modules/es6.typed.uint8-clamped-array */
+
+/*! ../modules/es6.weak-map */
+
+/*! ../modules/es6.weak-set */
+
+/*! ../modules/web.dom.iterable */
+
+/*! ../modules/web.immediate */
+
+/*! ../modules/web.timers */
+
+/*! ../node_modules/arraybuffer-loader/lib/to-array-buffer.js */
+
+/*! ./ */
+
+/*! ./IOTA.js */
+
+/*! ./IOTA.wasm */
+
+/*! ./_a-function */
+
+/*! ./_a-number-value */
+
+/*! ./_add-to-unscopables */
+
+/*! ./_advance-string-index */
+
+/*! ./_an-instance */
+
+/*! ./_an-object */
+
+/*! ./_array-copy-within */
+
+/*! ./_array-fill */
+
+/*! ./_array-includes */
+
+/*! ./_array-methods */
+
+/*! ./_array-reduce */
+
+/*! ./_array-species-constructor */
+
+/*! ./_array-species-create */
+
+/*! ./_bind */
+
+/*! ./_classof */
+
+/*! ./_cof */
+
+/*! ./_collection */
+
+/*! ./_collection-strong */
+
+/*! ./_collection-weak */
+
+/*! ./_core */
+
+/*! ./_create-property */
+
+/*! ./_ctx */
+
+/*! ./_date-to-iso-string */
+
+/*! ./_date-to-primitive */
+
+/*! ./_defined */
+
+/*! ./_descriptors */
+
+/*! ./_dom-create */
+
+/*! ./_enum-bug-keys */
+
+/*! ./_enum-keys */
+
+/*! ./_export */
+
+/*! ./_fails */
+
+/*! ./_fails-is-regexp */
+
+/*! ./_fix-re-wks */
+
+/*! ./_flags */
+
+/*! ./_for-of */
+
+/*! ./_global */
+
+/*! ./_has */
+
+/*! ./_hide */
+
+/*! ./_html */
+
+/*! ./_ie8-dom-define */
+
+/*! ./_inherit-if-required */
+
+/*! ./_invoke */
+
+/*! ./_iobject */
+
+/*! ./_is-array */
+
+/*! ./_is-array-iter */
+
+/*! ./_is-integer */
+
+/*! ./_is-object */
+
+/*! ./_is-regexp */
+
+/*! ./_iter-call */
+
+/*! ./_iter-create */
+
+/*! ./_iter-define */
+
+/*! ./_iter-detect */
+
+/*! ./_iter-step */
+
+/*! ./_iterators */
+
+/*! ./_library */
+
+/*! ./_math-expm1 */
+
+/*! ./_math-fround */
+
+/*! ./_math-log1p */
+
+/*! ./_math-sign */
+
+/*! ./_meta */
+
+/*! ./_microtask */
+
+/*! ./_new-promise-capability */
+
+/*! ./_object-assign */
+
+/*! ./_object-create */
+
+/*! ./_object-dp */
+
+/*! ./_object-dps */
+
+/*! ./_object-gopd */
+
+/*! ./_object-gopn */
+
+/*! ./_object-gopn-ext */
+
+/*! ./_object-gops */
+
+/*! ./_object-gpo */
+
+/*! ./_object-keys */
+
+/*! ./_object-keys-internal */
+
+/*! ./_object-pie */
+
+/*! ./_object-sap */
+
+/*! ./_object-to-array */
+
+/*! ./_own-keys */
+
+/*! ./_parse-float */
+
+/*! ./_parse-int */
+
+/*! ./_perform */
+
+/*! ./_promise-resolve */
+
+/*! ./_property-desc */
+
+/*! ./_redefine */
+
+/*! ./_redefine-all */
+
+/*! ./_regexp-exec */
+
+/*! ./_regexp-exec-abstract */
+
+/*! ./_same-value */
+
+/*! ./_set-proto */
+
+/*! ./_set-species */
+
+/*! ./_set-to-string-tag */
+
+/*! ./_shared */
+
+/*! ./_shared-key */
+
+/*! ./_species-constructor */
+
+/*! ./_strict-method */
+
+/*! ./_string-at */
+
+/*! ./_string-context */
+
+/*! ./_string-html */
+
+/*! ./_string-pad */
+
+/*! ./_string-repeat */
+
+/*! ./_string-trim */
+
+/*! ./_string-ws */
+
+/*! ./_task */
+
+/*! ./_to-absolute-index */
+
+/*! ./_to-index */
+
+/*! ./_to-integer */
+
+/*! ./_to-iobject */
+
+/*! ./_to-length */
+
+/*! ./_to-object */
+
+/*! ./_to-primitive */
+
+/*! ./_typed */
+
+/*! ./_typed-array */
+
+/*! ./_typed-buffer */
+
+/*! ./_uid */
+
+/*! ./_user-agent */
+
+/*! ./_validate-collection */
+
+/*! ./_wks */
+
+/*! ./_wks-define */
+
+/*! ./_wks-ext */
+
+/*! ./add */
+
+/*! ./aes */
+
+/*! ./any.js */
+
+/*! ./ascii */
+
+/*! ./async */
+
+/*! ./bind */
+
+/*! ./bindings */
+
+/*! ./bom-handling */
+
+/*! ./call_get.js */
+
+/*! ./cancel */
+
+/*! ./catch_filter */
+
+/*! ./cipher-core */
+
+/*! ./composeAPI */
+
+/*! ./constants */
+
+/*! ./context */
+
+/*! ./core */
+
+/*! ./core.get-iterator-method */
+
+/*! ./createAddNeighbors */
+
+/*! ./createAttachToTangle */
+
+/*! ./createBroadcastBundle */
+
+/*! ./createBroadcastTransactions */
+
+/*! ./createCheckConsistency */
+
+/*! ./createFindTransactionObjects */
+
+/*! ./createFindTransactions */
+
+/*! ./createGetAccountData */
+
+/*! ./createGetBalances */
+
+/*! ./createGetBundle */
+
+/*! ./createGetBundlesFromAddresses */
+
+/*! ./createGetInclusionStates */
+
+/*! ./createGetInputs */
+
+/*! ./createGetLatestInclusion */
+
+/*! ./createGetNeighbors */
+
+/*! ./createGetNewAddress */
+
+/*! ./createGetNodeInfo */
+
+/*! ./createGetTips */
+
+/*! ./createGetTransactionObjects */
+
+/*! ./createGetTransactionsToApprove */
+
+/*! ./createGetTransfers */
+
+/*! ./createGetTrytes */
+
+/*! ./createInterruptAttachingToTangle */
+
+/*! ./createIsPromotable */
+
+/*! ./createIsReattachable */
+
+/*! ./createPrepareTransfers */
+
+/*! ./createPromoteTransaction */
+
+/*! ./createRemoveNeighbors */
+
+/*! ./createReplayBundle */
+
+/*! ./createSendTransfer */
+
+/*! ./createSendTrytes */
+
+/*! ./createStoreAndBroadcast */
+
+/*! ./createStoreTransactions */
+
+/*! ./createTraverseBundle */
+
+/*! ./createWereAddressesSpentFrom */
+
+/*! ./dbcs-codec */
+
+/*! ./dbcs-data */
+
+/*! ./debuggability */
+
+/*! ./direct_resolve */
+
+/*! ./each.js */
+
+/*! ./enc-base64 */
+
+/*! ./enc-utf16 */
+
+/*! ./encryption */
+
+/*! ./errors */
+
+/*! ./es5 */
+
+/*! ./es6.array.iterator */
+
+/*! ./es6.regexp.exec */
+
+/*! ./es6.regexp.flags */
+
+/*! ./evpkdf */
+
+/*! ./extend-node */
+
+/*! ./filter.js */
+
+/*! ./finally */
+
+/*! ./format-hex */
+
+/*! ./generateAddress */
+
+/*! ./generators.js */
+
+/*! ./helpers */
+
+/*! ./hmac */
+
+/*! ./httpClient */
+
+/*! ./iconv-loader */
+
+/*! ./index.js */
+
+/*! ./internal */
+
+/*! ./join */
+
+/*! ./kerl */
+
+/*! ./lib-typedarrays */
+
+/*! ./map.js */
+
+/*! ./md5 */
+
+/*! ./method */
+
+/*! ./mode-cfb */
+
+/*! ./mode-ctr */
+
+/*! ./mode-ctr-gladman */
+
+/*! ./mode-ecb */
+
+/*! ./mode-ofb */
+
+/*! ./node-ponyfill */
+
+/*! ./nodeback */
+
+/*! ./nodeify.js */
+
+/*! ./pad-ansix923 */
+
+/*! ./pad-iso10126 */
+
+/*! ./pad-iso97971 */
+
+/*! ./pad-nopadding */
+
+/*! ./pad-zeropadding */
+
+/*! ./pbkdf2 */
+
+/*! ./promise */
+
+/*! ./promise_array */
+
+/*! ./promisify.js */
+
+/*! ./props.js */
+
+/*! ./queue */
+
+/*! ./rabbit */
+
+/*! ./rabbit-legacy */
+
+/*! ./race.js */
+
+/*! ./rc4 */
+
+/*! ./reduce.js */
+
+/*! ./request */
+
+/*! ./ripemd160 */
+
+/*! ./sbcs-codec */
+
+/*! ./sbcs-data */
+
+/*! ./sbcs-data-generated */
+
+/*! ./schedule */
+
+/*! ./settings */
+
+/*! ./settle.js */
+
+/*! ./sha1 */
+
+/*! ./sha224 */
+
+/*! ./sha256 */
+
+/*! ./sha3 */
+
+/*! ./sha384 */
+
+/*! ./sha512 */
+
+/*! ./signing */
+
+/*! ./some.js */
+
+/*! ./streams */
+
+/*! ./synchronous_inspection */
+
+/*! ./tables/big5-added.json */
+
+/*! ./tables/cp936.json */
+
+/*! ./tables/cp949.json */
+
+/*! ./tables/cp950.json */
+
+/*! ./tables/eucjp.json */
+
+/*! ./tables/gb18030-ranges.json */
+
+/*! ./tables/gbk-added.json */
+
+/*! ./tables/shiftjis.json */
+
+/*! ./thenables */
+
+/*! ./timers.js */
+
+/*! ./transaction */
+
+/*! ./tripledes */
+
+/*! ./trits */
+
+/*! ./using.js */
+
+/*! ./utf16 */
+
+/*! ./utf7 */
+
+/*! ./util */
+
+/*! ./wasm.js */
+
+/*! ./word-converter */
+
+/*! ./wrapper */
+
+/*! ./x64-core */
+
+/*! @babel/polyfill */
+
+/*! @iota/bundle */
+
+/*! @iota/bundle-validator */
+
+/*! @iota/checksum */
+
+/*! @iota/converter */
+
+/*! @iota/core */
+
+/*! @iota/curl */
+
+/*! @iota/http-client */
+
+/*! @iota/kerl */
+
+/*! @iota/pad */
+
+/*! @iota/signing */
+
+/*! @iota/transaction */
+
+/*! @iota/transaction-converter */
+
+/*! bluebird */
+
+/*! buffer */
+
+/*! core-js/es6 */
+
+/*! core-js/fn/array/includes */
+
+/*! core-js/fn/object/entries */
+
+/*! core-js/fn/object/get-own-property-descriptors */
+
+/*! core-js/fn/object/values */
+
+/*! core-js/fn/promise/finally */
+
+/*! core-js/fn/string/pad-end */
+
+/*! core-js/fn/string/pad-start */
+
+/*! core-js/fn/symbol/async-iterator */
+
+/*! core-js/web */
+
+/*! cross-fetch/polyfill */
+
+/*! crypto */
+
+/*! crypto-js */
+
+/*! encoding */
+
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, default */
+
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, default */
+
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, default */
+
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, default */
+
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, default */
+
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, default */
+
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, default */
+
+/*! exports provided: Assembly */
+
+/*! exports provided: default, Headers, Request, Response, FetchError */
+
+/*! exports provided: uChars, gbChars, default */
+
+/*! fast-text-encoding */
+
+/*! fs */
+
+/*! http */
+
+/*! https */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
+/*! iconv-lite */
+
+/*! idempotent-babel-polyfill */
+
+/*! no static exports found */
+
+/*! node-fetch */
+
+/*! path */
+
+/*! regenerator-runtime/runtime */
+
+/*! safer-buffer */
+
+/*! stream */
+
+/*! string_decoder */
+
+/*! url */
+
+/*! warning */
+
+/*! zlib */
+
+/*!********************!*\
+        !*** ./lib/mam.js ***!
+        \********************/
+
+/*!*********************!*\
+        !*** ./src/IOTA.js ***!
+        \*********************/
+
+/*!*********************!*\
+        !*** ./src/node.js ***!
+        \*********************/
+
+/*!*********************!*\
+        !*** external "fs" ***!
+        \*********************/
+
+/*!**********************!*\
+              !*** ./wasm/wasm.js ***!
+              \**********************/
+
+/*!**********************!*\
+              !*** external "url" ***!
+              \**********************/
+
+/*!**********************!*\
+        !*** ./src/index.js ***!
+        \**********************/
+
+/*!**********************!*\
+        !*** external "url" ***!
+        \**********************/
+
+/*!***********************!*\
+              !*** ./wasm/index.ts ***!
+              \***********************/
+
+/*!***********************!*\
+              !*** external "http" ***!
+              \***********************/
+
+/*!***********************!*\
+              !*** external "zlib" ***!
+              \***********************/
+
+/*!***********************!*\
+        !*** external "http" ***!
+        \***********************/
+
+/*!***********************!*\
+        !*** external "path" ***!
+        \***********************/
+
+/*!***********************!*\
+        !*** external "zlib" ***!
+        \***********************/
+
+/*!************************!*\
+              !*** ./wasm/IOTA.wasm ***!
+              \************************/
+
+/*!************************!*\
+              !*** external "https" ***!
+              \************************/
+
+/*!************************!*\
+        !*** external "https" ***!
+        \************************/
+
+/*!*************************!*\
+              !*** ./wasm/helpers.ts ***!
+              \*************************/
+
+/*!*************************!*\
+              !*** ./wasm/wrapper.ts ***!
+              \*************************/
+
+/*!*************************!*\
+              !*** external "stream" ***!
+              \*************************/
+
+/*!*************************!*\
+        !*** external "buffer" ***!
+        \*************************/
+
+/*!*************************!*\
+        !*** external "crypto" ***!
+        \*************************/
+
+/*!*************************!*\
+        !*** external "stream" ***!
+        \*************************/
+
+/*!**************************!*\
+              !*** ./wasm/bindings.ts ***!
+              \**************************/
+
+/*!***************************!*\
+        !*** ./src/encryption.js ***!
+        \***************************/
+
+/*!*********************************!*\
+        !*** external "string_decoder" ***!
+        \*********************************/
+
+/*!***************************************!*\
+              !*** ./node_modules/crypto-js/aes.js ***!
+              \***************************************/
+
+/*!***************************************!*\
+              !*** ./node_modules/crypto-js/md5.js ***!
+              \***************************************/
+
+/*!***************************************!*\
+              !*** ./node_modules/crypto-js/rc4.js ***!
+              \***************************************/
+
+/*!***************************************!*\
+        !*** ./node_modules/crypto-js/aes.js ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./node_modules/crypto-js/md5.js ***!
+        \***************************************/
+
+/*!***************************************!*\
+        !*** ./node_modules/crypto-js/rc4.js ***!
+        \***************************************/
+
+/*!****************************************!*\
+              !*** ./node_modules/crypto-js/core.js ***!
+              \****************************************/
+
+/*!****************************************!*\
+              !*** ./node_modules/crypto-js/hmac.js ***!
+              \****************************************/
+
+/*!****************************************!*\
+              !*** ./node_modules/crypto-js/sha1.js ***!
+              \****************************************/
+
+/*!****************************************!*\
+              !*** ./node_modules/crypto-js/sha3.js ***!
+              \****************************************/
+
+/*!****************************************!*\
+        !*** ./node_modules/crypto-js/core.js ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./node_modules/crypto-js/hmac.js ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./node_modules/crypto-js/sha1.js ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./node_modules/crypto-js/sha3.js ***!
+        \****************************************/
+
+/*!****************************************!*\
+        !*** ./node_modules/encoding/lib sync ***!
+        \****************************************/
+
+/*!*****************************************!*\
+              !*** ./node_modules/crypto-js/index.js ***!
+              \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/crypto-js/index.js ***!
+        \*****************************************/
+
+/*!*****************************************!*\
+        !*** ./node_modules/warning/warning.js ***!
+        \*****************************************/
+
+/*!******************************************!*\
+              !*** ./node_modules/crypto-js/evpkdf.js ***!
+              \******************************************/
+
+/*!******************************************!*\
+              !*** ./node_modules/crypto-js/pbkdf2.js ***!
+              \******************************************/
+
+/*!******************************************!*\
+              !*** ./node_modules/crypto-js/rabbit.js ***!
+              \******************************************/
+
+/*!******************************************!*\
+              !*** ./node_modules/crypto-js/sha224.js ***!
+              \******************************************/
+
+/*!******************************************!*\
+              !*** ./node_modules/crypto-js/sha256.js ***!
+              \******************************************/
+
+/*!******************************************!*\
+              !*** ./node_modules/crypto-js/sha384.js ***!
+              \******************************************/
+
+/*!******************************************!*\
+              !*** ./node_modules/crypto-js/sha512.js ***!
+              \******************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/crypto-js/evpkdf.js ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/crypto-js/pbkdf2.js ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/crypto-js/rabbit.js ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/crypto-js/sha224.js ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/crypto-js/sha256.js ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/crypto-js/sha384.js ***!
+        \******************************************/
+
+/*!******************************************!*\
+        !*** ./node_modules/crypto-js/sha512.js ***!
+        \******************************************/
+
+/*!*******************************************!*\
+              !*** ./node_modules/core-js/es6/index.js ***!
+              \*******************************************/
+
+/*!*******************************************!*\
+              !*** ./node_modules/core-js/web/index.js ***!
+              \*******************************************/
+
+/*!********************************************!*\
+              !*** ./node_modules/crypto-js/mode-cfb.js ***!
+              \********************************************/
+
+/*!********************************************!*\
+              !*** ./node_modules/crypto-js/mode-ctr.js ***!
+              \********************************************/
+
+/*!********************************************!*\
+              !*** ./node_modules/crypto-js/mode-ecb.js ***!
+              \********************************************/
+
+/*!********************************************!*\
+              !*** ./node_modules/crypto-js/mode-ofb.js ***!
+              \********************************************/
+
+/*!********************************************!*\
+              !*** ./node_modules/crypto-js/x64-core.js ***!
+              \********************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/crypto-js/mode-cfb.js ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/crypto-js/mode-ctr.js ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/crypto-js/mode-ecb.js ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/crypto-js/mode-ofb.js ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/crypto-js/x64-core.js ***!
+        \********************************************/
+
+/*!********************************************!*\
+        !*** ./node_modules/safer-buffer/safer.js ***!
+        \********************************************/
+
+/*!*********************************************!*\
+              !*** ./node_modules/crypto-js/enc-utf16.js ***!
+              \*********************************************/
+
+/*!*********************************************!*\
+              !*** ./node_modules/crypto-js/ripemd160.js ***!
+              \*********************************************/
+
+/*!*********************************************!*\
+              !*** ./node_modules/crypto-js/tripledes.js ***!
+              \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./node_modules/crypto-js/enc-utf16.js ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./node_modules/crypto-js/ripemd160.js ***!
+        \*********************************************/
+
+/*!*********************************************!*\
+        !*** ./node_modules/crypto-js/tripledes.js ***!
+        \*********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/@iota/core/out/types.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/@iota/core/out/utils.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/core-js/modules/_cof.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/core-js/modules/_ctx.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/core-js/modules/_has.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/core-js/modules/_uid.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/core-js/modules/_wks.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/crypto-js/enc-base64.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+              !*** ./node_modules/crypto-js/format-hex.js ***!
+              \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/@iota/core/out/types.js ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/@iota/core/out/utils.js ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/@iota/pad/out/errors.js ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/crypto-js/enc-base64.js ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/crypto-js/format-hex.js ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/iconv-lite/lib/index.js ***!
+        \**********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/@iota/core/out/errors.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/@iota/core/out/guards.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/core-js/modules/_bind.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/core-js/modules/_core.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/core-js/modules/_hide.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/core-js/modules/_html.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/core-js/modules/_meta.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/core-js/modules/_task.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/crypto-js/cipher-core.js ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+              !*** ./node_modules/node-fetch/lib/index.mjs ***!
+              \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./node_modules/@iota/core/out/errors.js ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./node_modules/@iota/core/out/guards.js ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./node_modules/crypto-js/cipher-core.js ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./node_modules/encoding/lib/encoding.js ***!
+        \***********************************************/
+
+/*!***********************************************!*\
+        !*** ./node_modules/node-fetch/lib/index.mjs ***!
+        \***********************************************/
+
+/*!************************************************!*\
+              !*** ./node_modules/core-js/modules/_fails.js ***!
+              \************************************************/
+
+/*!************************************************!*\
+              !*** ./node_modules/core-js/modules/_flags.js ***!
+              \************************************************/
+
+/*!************************************************!*\
+              !*** ./node_modules/core-js/modules/_typed.js ***!
+              \************************************************/
+
+/*!************************************************!*\
+              !*** ./node_modules/crypto-js/pad-ansix923.js ***!
+              \************************************************/
+
+/*!************************************************!*\
+              !*** ./node_modules/crypto-js/pad-iso10126.js ***!
+              \************************************************/
+
+/*!************************************************!*\
+              !*** ./node_modules/crypto-js/pad-iso97971.js ***!
+              \************************************************/
+
+/*!************************************************!*\
+        !*** ./node_modules/crypto-js/pad-ansix923.js ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./node_modules/crypto-js/pad-iso10126.js ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./node_modules/crypto-js/pad-iso97971.js ***!
+        \************************************************/
+
+/*!************************************************!*\
+        !*** ./node_modules/iconv-lite/lib/streams.js ***!
+        \************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/bluebird/js/release/any.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/bluebird/js/release/es5.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/bluebird/js/release/map.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/core-js/modules/_export.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/core-js/modules/_for-of.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/core-js/modules/_global.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/core-js/modules/_invoke.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/core-js/modules/_shared.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.map.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.set.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/crypto-js/pad-nopadding.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+              !*** ./node_modules/crypto-js/rabbit-legacy.js ***!
+              \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/@iota/bundle/out/errors.js ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/bluebird/js/release/any.js ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/bluebird/js/release/es5.js ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/bluebird/js/release/map.js ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/crypto-js/pad-nopadding.js ***!
+        \*************************************************/
+
+/*!*************************************************!*\
+        !*** ./node_modules/crypto-js/rabbit-legacy.js ***!
+        \*************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/@iota/checksum/out/types.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/@iota/core/out/constants.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/bluebird/js/release/bind.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/bluebird/js/release/each.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/bluebird/js/release/join.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/bluebird/js/release/race.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/bluebird/js/release/some.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/bluebird/js/release/util.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/core-js/fn/object/values.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/core-js/modules/_classof.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/core-js/modules/_defined.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/core-js/modules/_iobject.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/core-js/modules/_library.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/core-js/modules/_perform.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+              !*** ./node_modules/core-js/modules/_wks-ext.js ***!
+              \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/@iota/core/out/constants.js ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/@iota/signing/out/errors.js ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/bluebird/js/release/bind.js ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/bluebird/js/release/each.js ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/bluebird/js/release/join.js ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/bluebird/js/release/race.js ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/bluebird/js/release/some.js ***!
+        \**************************************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/bluebird/js/release/util.js ***!
+        \**************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/@babel/polyfill/lib/index.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/@iota/checksum/out/errors.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/@iota/checksum/out/guards.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/@iota/pad/out/typed-array.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/bluebird/js/release/async.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/bluebird/js/release/props.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/bluebird/js/release/queue.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/bluebird/js/release/using.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/core-js/fn/array/includes.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/core-js/fn/object/entries.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/core-js/fn/string/pad-end.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/core-js/modules/_is-array.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/core-js/modules/_own-keys.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/core-js/modules/_redefine.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/core-js/modules/_to-index.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/crypto-js/lib-typedarrays.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+              !*** ./node_modules/crypto-js/pad-zeropadding.js ***!
+              \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/@iota/checksum/out/errors.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/@iota/checksum/out/guards.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/@iota/pad/out/typed-array.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/bluebird/js/release/async.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/bluebird/js/release/props.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/bluebird/js/release/queue.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/bluebird/js/release/using.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/crypto-js/lib-typedarrays.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/crypto-js/pad-zeropadding.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/encoding/lib/iconv-loader.js ***!
+        \***************************************************/
+
+/*!***************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/utf7.js ***!
+        \***************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/@iota/curl/out/typed-array.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/@iota/kerl/out/typed-array.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/cancel.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/errors.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/filter.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/method.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/reduce.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/settle.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/timers.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/fn/promise/finally.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_an-object.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_enum-keys.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_is-object.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_is-regexp.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_iter-call.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_iter-step.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_iterators.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_math-sign.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_microtask.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-dp.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_parse-int.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_set-proto.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_string-at.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_string-ws.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_to-length.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/_to-object.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.symbol.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/core-js/modules/web.timers.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+              !*** ./node_modules/crypto-js/mode-ctr-gladman.js ***!
+              \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/@iota/curl/out/typed-array.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/@iota/kerl/out/typed-array.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/cancel.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/errors.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/filter.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/method.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/reduce.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/settle.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/timers.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/crypto-js/mode-ctr-gladman.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/index.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/utf16.js ***!
+        \****************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/iconv-lite/lib/extend-node.js ***!
+        \****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/@iota/http-client/out/types.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/@iota/pad/out/pad/src/index.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/context.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/finally.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/nodeify.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/bluebird/js/release/promise.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/fn/string/pad-start.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_a-function.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_array-fill.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_collection.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_dom-create.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_fix-re-wks.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_is-integer.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_math-expm1.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_math-log1p.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-dps.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-gpo.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-pie.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-sap.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_same-value.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_shared-key.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_string-pad.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_to-integer.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_to-iobject.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_user-agent.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/_wks-define.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.promise.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/fast-text-encoding/text.min.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+              !*** ./node_modules/regenerator-runtime/runtime.js ***!
+              \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/@iota/http-client/out/types.js ***!
+        \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/@iota/pad/out/pad/src/index.js ***!
+        \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/context.js ***!
+        \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/finally.js ***!
+        \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/nodeify.js ***!
+        \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/bluebird/js/release/promise.js ***!
+        \*****************************************************/
+
+/*!*****************************************************!*\
+        !*** ./node_modules/iconv-lite/lib/bom-handling.js ***!
+        \*****************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/@iota/bundle/out/typed-array.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/@iota/checksum/out/constants.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/hmac.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/@iota/kerl/out/kerl/src/kerl.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/@iota/transaction/out/errors.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/@iota/transaction/out/guards.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/bluebird/js/release/bluebird.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/bluebird/js/release/call_get.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/bluebird/js/release/nodeback.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/bluebird/js/release/schedule.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_an-instance.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_descriptors.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_iter-create.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_iter-define.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_iter-detect.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_math-fround.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-gopd.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-gopn.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-gops.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-keys.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_parse-float.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_regexp-exec.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_set-species.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_string-html.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_string-trim.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/_typed-array.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.of.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.date.now.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.weak-map.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.weak-set.js ***!
+              \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/@iota/bundle/out/typed-array.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/@iota/checksum/out/constants.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/hmac.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/@iota/kerl/out/kerl/src/kerl.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/@iota/transaction/out/errors.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/@iota/transaction/out/guards.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/bluebird/js/release/bluebird.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/bluebird/js/release/call_get.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/bluebird/js/release/nodeback.js ***!
+        \******************************************************/
+
+/*!******************************************************!*\
+        !*** ./node_modules/bluebird/js/release/schedule.js ***!
+        \******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/@iota/converter/out/src/ascii.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/@iota/converter/out/src/index.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/@iota/converter/out/src/trits.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/index.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/@iota/curl/out/curl/src/index.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/@iota/kerl/out/kerl/src/index.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/@iota/signing/out/typed-array.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/bluebird/js/release/promisify.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/bluebird/js/release/thenables.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/_array-reduce.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/_redefine-all.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/_to-primitive.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/_typed-buffer.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.map.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.cbrt.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.cosh.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.imul.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.log2.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.sign.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.sinh.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.tanh.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.is.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.parse-int.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+              !*** ./node_modules/core-js/modules/web.immediate.js ***!
+              \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/@iota/converter/out/src/ascii.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/@iota/converter/out/src/index.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/@iota/converter/out/src/trits.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/index.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/@iota/curl/out/curl/src/index.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/@iota/kerl/out/kerl/src/index.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/@iota/signing/out/typed-array.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/bluebird/js/release/promisify.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/bluebird/js/release/thenables.js ***!
+        \*******************************************************/
+
+/*!*******************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/internal.js ***!
+        \*******************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/@iota/converter/out/src/errors.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/@iota/kerl/out/kerl/src/errors.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/bluebird/js/release/generators.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_array-methods.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_enum-bug-keys.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_is-array-iter.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-assign.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-create.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_property-desc.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_strict-method.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/_string-repeat.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.fill.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.find.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.from.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.join.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.some.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.sort.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.acosh.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.asinh.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.atanh.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.clz32.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.expm1.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.hypot.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.log10.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.log1p.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.trunc.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.big.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.raw.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.sub.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.sup.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/cross-fetch/dist/node-polyfill.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+              !*** ./node_modules/cross-fetch/dist/node-ponyfill.js ***!
+              \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/@iota/converter/out/src/errors.js ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/@iota/kerl/out/kerl/src/errors.js ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/bluebird/js/release/generators.js ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/cross-fetch/dist/node-polyfill.js ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/cross-fetch/dist/node-ponyfill.js ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/dbcs-data.js ***!
+        \********************************************************/
+
+/*!********************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/sbcs-data.js ***!
+        \********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/@iota/transaction/out/constants.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/_a-number-value.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/_array-includes.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/_ie8-dom-define.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/_string-context.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.every.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.slice.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.math.fround.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.keys.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.seal.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.parse-float.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.get.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.has.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.set.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.exec.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.bold.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.link.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.trim.js ***!
+              \*********************************************************/
+
+/*!*********************************************************!*\
+        !*** ./node_modules/@iota/transaction/out/constants.js ***!
+        \*********************************************************/
+
+/*!*********************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/dbcs-codec.js ***!
+        \*********************************************************/
+
+/*!*********************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/sbcs-codec.js ***!
+        \*********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/bluebird/js/release/catch_filter.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/fn/symbol/async-iterator.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/_collection-weak.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/_create-property.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/_fails-is-regexp.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-gopn-ext.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-to-array.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/_promise-resolve.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.filter.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.reduce.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.date.to-json.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.flags.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.match.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.split.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.blink.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.fixed.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.small.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+              !*** ./node_modules/core-js/modules/web.dom.iterable.js ***!
+              \**********************************************************/
+
+/*!**********************************************************!*\
+        !*** ./node_modules/bluebird/js/release/catch_filter.js ***!
+        \**********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/@iota/bundle-validator/out/errors.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/@iota/bundle-validator/out/guards.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/@iota/bundle/out/bundle/src/index.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/@iota/signing/out/signing/src/add.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/@iota/transaction/out/typed-array.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/bluebird/js/release/debuggability.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/bluebird/js/release/promise_array.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.species.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.function.bind.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.function.name.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.is-nan.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.assign.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.create.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.freeze.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.apply.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.search.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.anchor.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.repeat.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.strike.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.object.values.js ***!
+              \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/@iota/bundle-validator/out/errors.js ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/@iota/bundle/out/bundle/src/index.js ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/@iota/signing/out/signing/src/add.js ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/@iota/transaction/out/typed-array.js ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/bluebird/js/release/debuggability.js ***!
+        \***********************************************************/
+
+/*!***********************************************************!*\
+        !*** ./node_modules/bluebird/js/release/promise_array.js ***!
+        \***********************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/composeAPI.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/bluebird/js/release/direct_resolve.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/_array-copy-within.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/_collection-strong.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/_date-to-primitive.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/_set-to-string-tag.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/_to-absolute-index.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.for-each.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.index-of.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.is-array.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.iterator.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.date.to-string.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.epsilon.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.replace.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.italics.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.array.includes.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.object.entries.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.string.pad-end.js ***!
+              \************************************************************/
+
+/*!************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/composeAPI.js ***!
+        \************************************************************/
+
+/*!************************************************************!*\
+        !*** ./node_modules/bluebird/js/release/direct_resolve.js ***!
+        \************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/@iota/signing/out/signing/src/index.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/_add-to-unscopables.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/_date-to-iso-string.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.to-fixed.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.fontsize.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.includes.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.iterator.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.data-view.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.promise.finally.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+              !*** ./node_modules/idempotent-babel-polyfill/lib/index.js ***!
+              \*************************************************************/
+
+/*!*************************************************************!*\
+        !*** ./node_modules/@iota/signing/out/signing/src/index.js ***!
+        \*************************************************************/
+
+/*!*************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/cp936.json ***!
+        \*************************************************************/
+
+/*!*************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/cp949.json ***!
+        \*************************************************************/
+
+/*!*************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/cp950.json ***!
+        \*************************************************************/
+
+/*!*************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/eucjp.json ***!
+        \*************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/@iota/bundle-validator/out/constants.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/@iota/signing/out/signing/src/errors.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/_inherit-if-required.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/_species-constructor.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/_validate-collection.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.find-index.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.is-finite.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.parse-int.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.is-frozen.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.is-sealed.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.to-string.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.own-keys.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.to-string.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.ends-with.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.fontcolor.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.int8-array.js ***!
+              \**************************************************************/
+
+/*!**************************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.string.pad-start.js ***!
+              \**************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/@iota/checksum/out/checksum/src/index.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetTips.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/@iota/signing/out/signing/src/signing.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/@iota/transaction-converter/out/types.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/_advance-string-index.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/_array-species-create.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/_object-keys-internal.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/_regexp-exec-abstract.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.copy-within.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.date.to-primitive.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.is-integer.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.construct.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.enumerate.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.int16-array.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.int32-array.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.uint8-array.js ***!
+              \***************************************************************/
+
+/*!***************************************************************!*\
+        !*** ./node_modules/@iota/checksum/out/checksum/src/index.js ***!
+        \***************************************************************/
+
+/*!***************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetTips.js ***!
+        \***************************************************************/
+
+/*!***************************************************************!*\
+        !*** ./node_modules/@iota/signing/out/signing/src/signing.js ***!
+        \***************************************************************/
+
+/*!***************************************************************!*\
+        !*** ./node_modules/@iota/transaction-converter/out/types.js ***!
+        \***************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/@iota/kerl/out/kerl/src/word-converter.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/@iota/transaction-converter/out/errors.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/@iota/transaction-converter/out/guards.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/arraybuffer-loader/lib/to-array-buffer.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.reduce-right.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.date.to-iso-string.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.constructor.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.parse-float.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.regexp.constructor.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.starts-with.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.array-buffer.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.uint16-array.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.uint32-array.js ***!
+              \****************************************************************/
+
+/*!****************************************************************!*\
+        !*** ./node_modules/@iota/kerl/out/kerl/src/word-converter.js ***!
+        \****************************************************************/
+
+/*!****************************************************************!*\
+        !*** ./node_modules/@iota/transaction-converter/out/errors.js ***!
+        \****************************************************************/
+
+/*!****************************************************************!*\
+        !*** ./node_modules/@iota/transaction-converter/out/guards.js ***!
+        \****************************************************************/
+
+/*!****************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/shiftjis.json ***!
+        \****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetBundle.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetInputs.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetTrytes.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/generateAddress.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/core-js/modules/_new-promise-capability.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.array.last-index-of.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.to-precision.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.float32-array.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.float64-array.js ***!
+              \*****************************************************************/
+
+/*!*****************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetBundle.js ***!
+        \*****************************************************************/
+
+/*!*****************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetInputs.js ***!
+        \*****************************************************************/
+
+/*!*****************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetTrytes.js ***!
+        \*****************************************************************/
+
+/*!*****************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/generateAddress.js ***!
+        \*****************************************************************/
+
+/*!*****************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/gbk-added.json ***!
+        \*****************************************************************/
+
+/*!******************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createSendTrytes.js ***!
+              \******************************************************************/
+
+/*!******************************************************************!*\
+              !*** ./node_modules/core-js/modules/core.get-iterator-method.js ***!
+              \******************************************************************/
+
+/*!******************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.is-extensible.js ***!
+              \******************************************************************/
+
+/*!******************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.code-point-at.js ***!
+              \******************************************************************/
+
+/*!******************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createSendTrytes.js ***!
+        \******************************************************************/
+
+/*!******************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/sbcs-data-generated.js ***!
+        \******************************************************************/
+
+/*!******************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/big5-added.json ***!
+        \******************************************************************/
+
+/*!*******************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetBalances.js ***!
+              \*******************************************************************/
+
+/*!*******************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetNodeInfo.js ***!
+              \*******************************************************************/
+
+/*!*******************************************************************!*\
+              !*** ./node_modules/@iota/transaction-converter/out/constants.js ***!
+              \*******************************************************************/
+
+/*!*******************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.function.has-instance.js ***!
+              \*******************************************************************/
+
+/*!*******************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.is-extensible.js ***!
+              \*******************************************************************/
+
+/*!*******************************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.symbol.async-iterator.js ***!
+              \*******************************************************************/
+
+/*!*******************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetBalances.js ***!
+        \*******************************************************************/
+
+/*!*******************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetNodeInfo.js ***!
+        \*******************************************************************/
+
+/*!*******************************************************************!*\
+        !*** ./node_modules/@iota/transaction-converter/out/constants.js ***!
+        \*******************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createAddNeighbors.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetNeighbors.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetTransfers.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createIsPromotable.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createReplayBundle.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createSendTransfer.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/bluebird/js/release/synchronous_inspection.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/core-js/modules/_array-species-constructor.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.is-safe-integer.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.define-property.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.string.from-code-point.js ***!
+              \********************************************************************/
+
+/*!********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createAddNeighbors.js ***!
+        \********************************************************************/
+
+/*!********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetNeighbors.js ***!
+        \********************************************************************/
+
+/*!********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetTransfers.js ***!
+        \********************************************************************/
+
+/*!********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createIsPromotable.js ***!
+        \********************************************************************/
+
+/*!********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createReplayBundle.js ***!
+        \********************************************************************/
+
+/*!********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createSendTransfer.js ***!
+        \********************************************************************/
+
+/*!********************************************************************!*\
+        !*** ./node_modules/bluebird/js/release/synchronous_inspection.js ***!
+        \********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetNewAddress.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/@iota/http-client/out/http-client/src/index.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/@iota/transaction-converter/out/typed-array.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/@iota/transaction/out/transaction/src/index.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.max-safe-integer.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.number.min-safe-integer.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.get-prototype-of.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.set-prototype-of.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.define-property.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.delete-property.js ***!
+              \*********************************************************************/
+
+/*!*********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetNewAddress.js ***!
+        \*********************************************************************/
+
+/*!*********************************************************************!*\
+        !*** ./node_modules/@iota/http-client/out/http-client/src/index.js ***!
+        \*********************************************************************/
+
+/*!*********************************************************************!*\
+        !*** ./node_modules/@iota/transaction-converter/out/typed-array.js ***!
+        \*********************************************************************/
+
+/*!*********************************************************************!*\
+        !*** ./node_modules/@iota/transaction/out/transaction/src/index.js ***!
+        \*********************************************************************/
+
+/*!**********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createAttachToTangle.js ***!
+              \**********************************************************************/
+
+/*!**********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetAccountData.js ***!
+              \**********************************************************************/
+
+/*!**********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createIsReattachable.js ***!
+              \**********************************************************************/
+
+/*!**********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createTraverseBundle.js ***!
+              \**********************************************************************/
+
+/*!**********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.define-properties.js ***!
+              \**********************************************************************/
+
+/*!**********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.get-prototype-of.js ***!
+              \**********************************************************************/
+
+/*!**********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.set-prototype-of.js ***!
+              \**********************************************************************/
+
+/*!**********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createAttachToTangle.js ***!
+        \**********************************************************************/
+
+/*!**********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetAccountData.js ***!
+        \**********************************************************************/
+
+/*!**********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createIsReattachable.js ***!
+        \**********************************************************************/
+
+/*!**********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createTraverseBundle.js ***!
+        \**********************************************************************/
+
+/*!**********************************************************************!*\
+        !*** ./node_modules/iconv-lite/encodings/tables/gb18030-ranges.json ***!
+        \**********************************************************************/
+
+/*!***********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createBroadcastBundle.js ***!
+              \***********************************************************************/
+
+/*!***********************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createRemoveNeighbors.js ***!
+              \***********************************************************************/
+
+/*!***********************************************************************!*\
+              !*** ./node_modules/@iota/http-client/out/http-client/src/request.js ***!
+              \***********************************************************************/
+
+/*!***********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.prevent-extensions.js ***!
+              \***********************************************************************/
+
+/*!***********************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.typed.uint8-clamped-array.js ***!
+              \***********************************************************************/
+
+/*!***********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createBroadcastBundle.js ***!
+        \***********************************************************************/
+
+/*!***********************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createRemoveNeighbors.js ***!
+        \***********************************************************************/
+
+/*!***********************************************************************!*\
+        !*** ./node_modules/@iota/http-client/out/http-client/src/request.js ***!
+        \***********************************************************************/
+
+/*!************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createCheckConsistency.js ***!
+              \************************************************************************/
+
+/*!************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createFindTransactions.js ***!
+              \************************************************************************/
+
+/*!************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createPrepareTransfers.js ***!
+              \************************************************************************/
+
+/*!************************************************************************!*\
+              !*** ./node_modules/@iota/http-client/out/http-client/src/settings.js ***!
+              \************************************************************************/
+
+/*!************************************************************************!*\
+              !*** ./node_modules/core-js/fn/object/get-own-property-descriptors.js ***!
+              \************************************************************************/
+
+/*!************************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.prevent-extensions.js ***!
+              \************************************************************************/
+
+/*!************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createCheckConsistency.js ***!
+        \************************************************************************/
+
+/*!************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createFindTransactions.js ***!
+        \************************************************************************/
+
+/*!************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createPrepareTransfers.js ***!
+        \************************************************************************/
+
+/*!************************************************************************!*\
+        !*** ./node_modules/@iota/http-client/out/http-client/src/settings.js ***!
+        \************************************************************************/
+
+/*!*************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createStoreAndBroadcast.js ***!
+              \*************************************************************************/
+
+/*!*************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createStoreTransactions.js ***!
+              \*************************************************************************/
+
+/*!*************************************************************************!*\
+              !*** ./node_modules/@iota/transaction/out/transaction/src/constants.js ***!
+              \*************************************************************************/
+
+/*!*************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createStoreAndBroadcast.js ***!
+        \*************************************************************************/
+
+/*!*************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createStoreTransactions.js ***!
+        \*************************************************************************/
+
+/*!**************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetInclusionStates.js ***!
+              \**************************************************************************/
+
+/*!**************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetLatestInclusion.js ***!
+              \**************************************************************************/
+
+/*!**************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createPromoteTransaction.js ***!
+              \**************************************************************************/
+
+/*!**************************************************************************!*\
+              !*** ./node_modules/@iota/http-client/out/http-client/src/httpClient.js ***!
+              \**************************************************************************/
+
+/*!**************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetInclusionStates.js ***!
+        \**************************************************************************/
+
+/*!**************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetLatestInclusion.js ***!
+        \**************************************************************************/
+
+/*!**************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createPromoteTransaction.js ***!
+        \**************************************************************************/
+
+/*!**************************************************************************!*\
+        !*** ./node_modules/@iota/http-client/out/http-client/src/httpClient.js ***!
+        \**************************************************************************/
+
+/*!***************************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.get-own-property-names.js ***!
+              \***************************************************************************/
+
+/*!***************************************************************************!*\
+        !*** ./node_modules/@iota/transaction/out/transaction/src/transaction.js ***!
+        \***************************************************************************/
+
+/*!****************************************************************************!*\
+        !*** ./node_modules/@iota/core/node_modules/@iota/curl/out/typed-array.js ***!
+        \****************************************************************************/
+
+/*!*****************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createBroadcastTransactions.js ***!
+              \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetTransactionObjects.js ***!
+              \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createBroadcastTransactions.js ***!
+        \*****************************************************************************/
+
+/*!*****************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetTransactionObjects.js ***!
+        \*****************************************************************************/
+
+/*!******************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createFindTransactionObjects.js ***!
+              \******************************************************************************/
+
+/*!******************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createWereAddressesSpentFrom.js ***!
+              \******************************************************************************/
+
+/*!******************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createFindTransactionObjects.js ***!
+        \******************************************************************************/
+
+/*!******************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createWereAddressesSpentFrom.js ***!
+        \******************************************************************************/
+
+/*!*******************************************************************************!*\
+              !*** ./node_modules/@iota/bundle-validator/out/bundle-validator/src/index.js ***!
+              \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetBundlesFromAddresses.js ***!
+              \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+        !*** ./node_modules/@iota/bundle-validator/out/bundle-validator/src/index.js ***!
+        \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+        !*** ./node_modules/@iota/core/node_modules/@iota/curl/out/curl/src/index.js ***!
+        \*******************************************************************************/
+
+/*!*******************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetBundlesFromAddresses.js ***!
+        \*******************************************************************************/
+
+/*!********************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createGetTransactionsToApprove.js ***!
+              \********************************************************************************/
+
+/*!********************************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.object.get-own-property-descriptor.js ***!
+              \********************************************************************************/
+
+/*!********************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createGetTransactionsToApprove.js ***!
+        \********************************************************************************/
+
+/*!*********************************************************************************!*\
+              !*** ./node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js ***!
+              \*********************************************************************************/
+
+/*!*********************************************************************************!*\
+              !*** ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js ***!
+              \*********************************************************************************/
+
+/*!**********************************************************************************!*\
+              !*** ./node_modules/@iota/core/out/core/src/createInterruptAttachingToTangle.js ***!
+              \**********************************************************************************/
+
+/*!**********************************************************************************!*\
+        !*** ./node_modules/@iota/core/out/core/src/createInterruptAttachingToTangle.js ***!
+        \**********************************************************************************/
+
+/*!***********************************************************************************!*\
+        !*** ./node_modules/@iota/transaction/node_modules/@iota/curl/out/typed-array.js ***!
+        \***********************************************************************************/
+
+/*!**************************************************************************************!*\
+        !*** ./node_modules/@iota/transaction/node_modules/@iota/curl/out/curl/src/index.js ***!
+        \**************************************************************************************/
+
+/*!*****************************************************************************************!*\
+              !*** ./node_modules/@iota/transaction-converter/out/transaction-converter/src/index.js ***!
+              \*****************************************************************************************/
+
+/*!*****************************************************************************************!*\
+        !*** ./node_modules/@iota/transaction-converter/out/transaction-converter/src/index.js ***!
+        \*****************************************************************************************/
+
+/** @license React v0.18.0
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.12.0
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.12.0
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.12.0
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @preserve
+                  (c) 2012 by Cédric Mesnil. All rights reserved.
+                  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+                  - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+                  - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+                  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                  */
+
+/** @preserve
+                  * Counter block mode compatible with  Dr Brian Gladman fileenc.c
+                  * derived from CryptoJS.mode.CTR
+                  * Jan Hruby jhruby.web@gmail.com
+                  */
+
+/** @preserve
+           * Counter block mode compatible with  Dr Brian Gladman fileenc.c
+           * derived from CryptoJS.mode.CTR
+           * Jan Hruby jhruby.web@gmail.com
+           */
+
+/** @preserve
+          (c) 2012 by Cédric Mesnil. All rights reserved.
+          	Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+          	    - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+              - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+          	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+          */
+
+/** @preserve
+   * Counter block mode compatible with  Dr Brian Gladman fileenc.c
+   * derived from CryptoJS.mode.CTR
+   * Jan Hruby jhruby.web@gmail.com
+   */
+
+/** @preserve
+  (c) 2012 by Cédric Mesnil. All rights reserved.
+  	Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  	    - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+      - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+  	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
