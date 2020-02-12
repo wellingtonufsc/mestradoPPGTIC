@@ -10,7 +10,7 @@ const iota = Iota.composeAPI({
 });
 
 const listenAddress = 'XVFJNZOZXGYWR9HFYG9WCJTLZ9HUZOPVAIIYIQNNYVVXG9VQQMKDCSIRIRQVXPBEVE99SAWGFJAWCLSHCTNONGQWDW'
-const tag = 'HAMILTONTCCFIRSTMESSAGE';
+const tag = 'HAMILTONTCCTOKENMESSAGE';
 
 const query = {
     addresses: [listenAddress],
