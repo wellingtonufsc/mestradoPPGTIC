@@ -1,0 +1,46 @@
+.iota-item {
+    margin: 1rem;
+    width: 60%;
+    min-width: 17.5rem;
+  }
+  
+  .iota-item a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 1rem;
+    color: white;
+    background: #292929;
+  }
+  
+  .iota-item a:hover,
+  .iota-item a:active {
+    background: #ffd900;
+  }
+  
+  .iota-item__content {
+    padding: 0;
+  }
+  
+  .iota-item__info h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
+    color: #ffd900;
+  }
+  
+  .iota-item:hover h2,
+  .iota-item:active h2,
+  .iota-item:hover h3,
+  .iota-item:active h3,
+  hr {
+    color: #292929;
+  }
+  
+  .iota-item__info h3 {
+    font-size: 10px;
+    font-weight: 100;
+    margin: 0;
+  }
