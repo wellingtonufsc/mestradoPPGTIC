@@ -2,22 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Card from '../../shared/UIElements/Card';
-import './IotaItem.css';
+import './MamItem.css';
 
-const IotaItem = props => {
+const MamItem = props => {
 
-    const temp = props.message.substring(0, 5);
-    const humi = props.message.substring(5, 7);
-    const co2 = props.message.substring(7, 12);
-    const lat = props.message.substring(12, 18);
-    const lon = props.message.substring(18, 24);
-    const d = new Date(props.timestamp*1000);
+    const { temp, humi, co2, lat, lon } = props.message;
 
     return (
-        <li className="iota-item" key={props.hash}>
-            <Card className="iota-item__content">
+        <li className="mam-item" key={props.hash}>
+            <Card className="mam-item__content">
                 <Link to="/">
-                    <div className="iota-item__info">
+                    <div className="mam-item__info">
                         <h3>hash: {props.hash}</h3>
                         <hr />
                         <h2>temperatura: {temp}</h2>
@@ -25,7 +20,6 @@ const IotaItem = props => {
                         <h2>CO²: {co2}%</h2>
                         <h2>latitude: {lat}</h2>
                         <h2>longitude: {lon}</h2>
-                        <h2>timestamp: {d.toGMTString()}</h2>
                         <hr />
                         <h3>value: {props.value}</h3>
                         <h3>tag: {props.tag}</h3>
@@ -37,4 +31,4 @@ const IotaItem = props => {
       );
 };
 
-export default IotaItem;
+export default MamItem;

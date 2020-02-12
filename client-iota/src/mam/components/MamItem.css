@@ -1,0 +1,46 @@
+.mam-item {
+    margin: 1rem;
+    width: 60%;
+    min-width: 17.5rem;
+  }
+  
+  .mam-item a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 1rem;
+    color: white;
+    background: #292929;
+  }
+  
+  .mam-item a:hover,
+  .mam-item a:active {
+    background: #ffd900;
+  }
+  
+  .mam-item__content {
+    padding: 0;
+  }
+  
+  .mam-item__info h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
+    color: #ffd900;
+  }
+  
+  .mam-item:hover h2,
+  .mam-item:active h2,
+  .mam-item:hover h3,
+  .mam-item:active h3,
+  hr {
+    color: #292929;
+  }
+  
+  .mam-item__info h3 {
+    font-size: 10px;
+    font-weight: 100;
+    margin: 0;
+  }

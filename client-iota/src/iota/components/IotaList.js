@@ -7,7 +7,7 @@ import './IotaList.css';
 const IotaList = props => {
     if (props.items.length === 0) {
         return (
-          <div className="center">
+          <div className="center iota-list">
             <Card>
               <h2>No Tokens Recieved</h2>
             </Card>

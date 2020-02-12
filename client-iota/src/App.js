@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  Route
-} from 'react-router-dom';
 
-import IotaListener from './iota/pages/IotaListener';
+import Routes from './routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Route exact path="/" component={IotaListener} />
-    </BrowserRouter>
+    <div>
+      <Routes />
+    </div>
   );
 }
 
