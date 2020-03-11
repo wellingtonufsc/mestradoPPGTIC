@@ -5,14 +5,13 @@ import MamList from '../components/MamList';
 const Mam = require('@iota/mam');
 const { trytesToAscii } = require('@iota/converter');
 
-const mode = 'restricted';
-const sideKey = 'VERYSECRETKEY';
+const mode = 'public';
 const provider = 'https://nodes.devnet.iota.org';
-const root = '9J9KWRFYBRMCBWVK9AVP9FHKYGDCGISIVFBGUYPJVCDVXBBRDLJYVSZOYDDDISKDWAUWIYINAFLOVQ9MI';
+const root = 'XVFVCWLBODYHVNLMBBIUAIN9QYHQKMYZNDYTLUUWVZOBGUREABZHDFVBIORLCEYXLFTKDHRSPYHCYFWWJ';
 
 let mamState = Mam.init(provider);
 
-mamState = Mam.changeMode(mamState, mode, sideKey);
+//mamState = Mam.changeMode(mamState, mode);
 
 class MamListener extends React.Component {
 
@@ -29,18 +28,14 @@ class MamListener extends React.Component {
     }
 
     getMamMessages = async () => {
-        await Mam.fetch(root, mode, sideKey, transaction => {
-            const msg = JSON.parse(trytesToAscii(transaction));
-            console.log(msg);
+        const result = await Mam.fetch(root, mode);
+        let msgs = [];
+        result.messages.forEach(message => {
+            const msg = JSON.parse(trytesToAscii(message));
+            msgs.push(msg)
+        })
 
-            if (this.state.transactions.filter(element => element.hash === msg.hash).length === 0){
-                this.setState(prevState => ({
-                    transactions: [...prevState.transactions, msg]
-                }))
-            }
-
-            
-        });
+        this.setState({ transactions: msgs });
     }
 
 

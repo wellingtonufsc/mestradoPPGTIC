@@ -9,6 +9,7 @@ import {
 import Header from './shared/UIElements/Header';
 import IotaListener from './iota/pages/IotaListener';
 import MamListener from './mam/pages/MamListener';
+import MamListener2 from './mam/pages/MamListener2';
 
 const Routes = () => {
     return (
