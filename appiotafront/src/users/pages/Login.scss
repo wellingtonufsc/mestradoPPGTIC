@@ -1,0 +1,121 @@
+$white: rgba(255,255,255,1);
+$grey: #ccc;
+$greyFocus: #aaa;
+$blue: #008080;
+$blueShadow: rgba(0,80,80,.4);
+$lightBackground: rgba(182, 240, 240, .5);
+$darkBlue: #045c5c;
+$lightBlue: #3ef0f0;
+
+.vid-info { 
+    position: absolute; 
+    top: 15%; 
+	left: 10%; 
+	
+	h2{
+		color: $blue;
+	}
+
+	.login_form{
+		background: $white; 
+		border-top:1px solid $grey;
+		border-right:1px solid $grey;
+		max-width: 400px;
+		min-width: 400px;
+		padding: 30px 15px;
+		border-radius: 50px;
+
+		form{
+			padding: 0 2em;
+
+			.form__input{
+				width: 100%;
+				border:0px solid transparent;
+				border-radius: 0;
+				border-bottom: 1px solid $greyFocus;
+				padding: 1em .5em .5em;
+				padding-left: 2em;
+				outline:none;
+				margin:1em auto 0.5em auto;
+				transition: all .5s ease;
+			}
+			.form__input:focus{
+				border-bottom-color: $blue;
+				box-shadow: 0 0 5px $blueShadow; 
+				border-radius: 4px;
+				background: $lightBackground;
+			}
+
+			.btn{
+				transition: all .5s ease;
+				width: 70%;
+				border-radius: 30px;
+				color: $blue;
+				font-weight: 600;
+				background-color: $white;
+				border: 1px solid $blue;
+				margin-top: 1.5em;
+				margin-bottom: 1em;
+			}
+			.btn:hover, .btn:focus{
+				background-color: $darkBlue;
+				color:#fff;
+			}
+			
+			.btn:disabled,
+			.btn[disabled] {
+				background-color: $lightBlue;
+				color: $grey;
+			}
+		}
+
+		a {
+			color: $blue;
+		}
+
+		a:hover {
+			color: $darkBlue;
+			cursor: pointer;
+		}
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.vid-info {
+		position: relative;
+		margin: 20px;
+		top: 0;
+		left: 0;
+		box-sizing: border-box;
+
+		.login_form {
+			width: 100%;
+			box-sizing: border-box;
+		}
+	}
+}
+
+.my-node-enter {
+	opacity: 0;
+	transform: scale(0.9);
+}
+.my-node-enter-active {
+	opacity: 1;
+	transform: translateX(0);
+	transition: opacity 1000ms, transform 1000ms;
+}
+.my-node-exit {
+	opacity: 1;
+}
+.my-node-exit-active {
+	opacity: 0;
+	transform: scale(0.9);
+	transition: opacity 1000ms, transform 1000ms;
+}
+
+.p-erros{
+	font-size: 10px;
+	color: red;
+	margin-top: 0;
+	display: block;
+}
