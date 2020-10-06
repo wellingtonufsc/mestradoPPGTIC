@@ -108,3 +108,10 @@ $darkBlue: #2691d9;
 .input-error {
 	border: 1px solid red;
 }
+
+@media screen and (max-width: 750px) {
+	.content{
+		position: absolute;
+		left: 50%;
+	}
+}
