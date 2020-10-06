@@ -40,10 +40,13 @@ const LoginForm = props => {
                 isSubmitting
             }) => (
                 <div className="vid-info">
-                    <div className="login_form text-center">
-                        <h2>Faça o Login</h2>
-                        <form className="form-group" onSubmit={handleSubmit}>
-                            <input type="email" name="email" id="email" className="form__input" placeholder="Email" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.email}/>
+                    <div className="content">
+                        <header>Faça o Login</header>
+                        <form onSubmit={handleSubmit} >
+                            <div className={'field ' + (touched.email && errors.email ? 'input-error' : '')}>
+                                <span className="fa fa-user"></span>
+                                <input type="email" name="email" id="email" required placeholder="Email" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                            </div>
                             <CSSTransition
                                 in={touched.email && errors.email}
                                 timeout={200}
@@ -52,18 +55,25 @@ const LoginForm = props => {
                             >
                                 <p className="p-erros" >{errors.email}</p>
                             </CSSTransition>
-                            <input type="password" name="password" id="password" className="form__input" placeholder="Senha" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.password} />
-                            <CSSTransition
-                                in={touched.password && errors.password}
-                                timeout={200}
-                                unmountOnExit
-                                classNames="my-node"
-                            >
-                                <p className="p-erros" >{errors.password}</p>
-                            </CSSTransition>
-                            <input type="submit" value="Entrar" className="btn" disabled={isSubmitting}/>
+                            <div className={'field space ' + (touched.password && errors.password ? 'input-error' : '')}>
+                                <span className="fa fa-lock"></span>
+                                <input type="password" name="password" id="password" className="pass-key" required placeholder="Senha" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.password} />
+                                <CSSTransition
+                                    in={touched.password && errors.password}
+                                    timeout={200}
+                                    unmountOnExit
+                                    classNames="my-node"
+                                >
+                                    <p className="p-erros" >{errors.password}</p>
+                                </CSSTransition>
+                            </div>
+                            <div className="field space">
+                                <input type="submit" value="Entrar" disabled={isSubmitting}/>
+                            </div>
+                            <div className="pass">
+                                <p>Não tem uma conta? <a onClick={props.switchMode}>Cadastre-se!</a></p>
+                            </div>
                         </form>
-                        <p>Não tem uma conta? <a onClick={props.switchMode}>Cadastre-se!</a></p>
                     </div>
                 </div>
             )}

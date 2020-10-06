@@ -60,11 +60,14 @@ const SignUpForm = props => {
                 handleSubmit,
                 isSubmitting
             }) => (
-                <div className="vid-info" >
-                    <div className="login_form text-center">
-                        <h2>Cadastre-se</h2>
-                        <form className="form-group" onSubmit={handleSubmit}>
-                            <input type="text" name="name" id="name" className="form__input" placeholder="Seu nome" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.name}/>
+                <div className="vid-info">
+                    <div className="content">
+                        <header>Cadastre-se</header>
+                        <form onSubmit={handleSubmit} >
+                        <div className={'field ' + (touched.name && errors.name ? 'input-error' : '')}>
+                                <span className="fa fa-user"></span>
+                                <input type="text" name="name" id="name" required placeholder="Seu nome" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.name} />
+                            </div>
                             <CSSTransition
                                 in={touched.name && errors.name}
                                 timeout={200}
@@ -73,7 +76,10 @@ const SignUpForm = props => {
                             >
                                 <p className="p-erros" >{errors.name}</p>
                             </CSSTransition>
-                            <input type="email" name="email" id="email" className="form__input" placeholder="Email" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                            <div className={'field space ' + (touched.email && errors.email ? 'input-error' : '')}>
+                                <span className="fa fa-envelope"></span>
+                                <input type="email" name="email" id="email" required placeholder="Email" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                            </div>
                             <CSSTransition
                                 in={touched.email && errors.email}
                                 timeout={200}
@@ -82,7 +88,10 @@ const SignUpForm = props => {
                             >
                                 <p className="p-erros" >{errors.email}</p>
                             </CSSTransition>
-                            <input type="password" name="password" id="password" className="form__input" placeholder="Senha" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.password}/>
+                            <div className={'field space ' + (touched.password && errors.password ? 'input-error' : '')}>
+                                <span className="fa fa-lock"></span>
+                                <input type="password" name="password" id="password" className="pass-key" required placeholder="Senha" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.password} />
+                            </div>
                             <CSSTransition
                                 in={touched.password && errors.password}
                                 timeout={200}
@@ -91,9 +100,13 @@ const SignUpForm = props => {
                             >
                                 <p className="p-erros" >{errors.password}</p>
                             </CSSTransition>
-                            <input type="submit" value="Cadastrar" className="btn" disabled={isSubmitting}/>
+                            <div className="field space">
+                                <input type="submit" value="Cadastrar" disabled={isSubmitting}/>
+                            </div>
+                            <div className="pass">
+                                <p>Já tem uma conta? <a onClick={props.switchMode}>Faça Login!</a></p>
+                            </div>
                         </form>
-                        <p>Já tem uma conta? <a onClick={props.switchMode}>Faça Login!</a></p>
                     </div>
                 </div>
             )}
