@@ -38,7 +38,7 @@ const Login = () => {
                 unmountOnExit
                 onExited={turnOffLogin}
             >
-                <LoginForm switchMode={() => setIsLoginMode(false)}></LoginForm>
+                <LoginForm switchMode={() => setIsLoginMode(false)} signUpSuccess={signUpHandler} ></LoginForm>
             </CSSTransition>
             <CSSTransition
                 classNames="my-node"

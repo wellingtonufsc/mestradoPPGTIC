@@ -1,8 +1,26 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { CSSTransition } from 'react-transition-group';
+import api from '../../services/api';
 
 const LoginForm = props => {
+
+    const submitHandler = async userData => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+
+        const response = await api.post('/users/login', userData, headers);
+
+        const { status, message } = response.data;
+
+        if (status == 200) {
+            props.signUpSuccess(true);
+        } else {
+            props.signUpSuccess(false, message);
+        }
+    }
+
     return (
         <Formik
             initialValues={{ email: '', password: '' }}
@@ -24,7 +42,7 @@ const LoginForm = props => {
             }}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    submitHandler(values);
                     setSubmitting(false);
                 }, 400);
             }}

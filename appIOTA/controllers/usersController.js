@@ -40,5 +40,31 @@ const add = async (req, res) => {
     res.json(response);
 };
 
+const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    let existingUser;
+    let response = {};
+
+    try {
+        existingUser = await User.findOne({email: email});
+
+        if(!existingUser) {
+            throw new Error('Credenciais Erradas');
+        }
+
+        if(existingUser.password !== await bcrypt.hash(password, 12)) {
+            throw new Error('Credenciais Erradas');
+        }
+
+        response = {status: 200, message: 'Login realizado com sucesso!'};
+    } catch (err) {
+        response = {status: 500, message: err.message};
+    }
+
+    res.json(response);
+}
+
 exports.getAll = getAll;
 exports.add = add;
+exports.login = login;
