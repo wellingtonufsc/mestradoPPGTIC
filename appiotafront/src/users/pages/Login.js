@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignUpForm';
@@ -7,12 +8,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Login.scss';
 
 const Login = () => {
+
+    const history = useHistory();
     const [isLoginMode, setIsLoginMode] = useState(true);
     const [isSignUpMode, setIsSignUpMode] = useState(false);
 
     const signUpHandler = (success, message = '') => {
         if (success) {
             toast("Cadastrado com sucesso! Por favor, faça o log in", {type:'dark'});
+            
+            if (message == 'logado') {
+                history.push('/dashboard');
+            }
         } else {
             toast(message + " Por favor, tente novamente", {type:'error'});
         }

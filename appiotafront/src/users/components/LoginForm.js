@@ -15,7 +15,7 @@ const LoginForm = props => {
         const { status, message } = response.data;
 
         if (status == 200) {
-            props.signUpSuccess(true);
+            props.signUpSuccess(true, 'logado');
         } else {
             props.signUpSuccess(false, message);
         }

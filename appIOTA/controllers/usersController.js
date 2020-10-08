@@ -53,7 +53,7 @@ const login = async (req, res) => {
             throw new Error('Credenciais Erradas');
         }
 
-        if(existingUser.password !== await bcrypt.hash(password, 12)) {
+        if(!(await bcrypt.compare(password, existingUser.password))) {
             throw new Error('Credenciais Erradas');
         }
 
