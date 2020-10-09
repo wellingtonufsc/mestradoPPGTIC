@@ -6,12 +6,6 @@ import { BrowserRouter , Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './App.scss';
 
-function getPathDepth(location) {
-  let pathArr = (location || {}).pathname.split('/');
-  pathArr = pathArr.filter(n => n !== '');
-  return pathArr.length;
-}
-
 function App() {
 
   return (
@@ -21,7 +15,7 @@ function App() {
           <TransitionGroup component={null}>
             <CSSTransition
               unmountOnExit
-              timeout={300}
+              timeout={1000}
               classNames={'pageSliderLeft'}
               key={location.key}
             >
