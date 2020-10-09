@@ -57,7 +57,12 @@ const login = async (req, res) => {
             throw new Error('Credenciais Erradas');
         }
 
-        response = {status: 200, message: 'Login realizado com sucesso!'};
+        response = {
+            status: 200, 
+            message: 'Login realizado com sucesso!',
+            userId: existingUser.id,
+            userName: existingUser.name
+        };
     } catch (err) {
         response = {status: 500, message: err.message};
     }

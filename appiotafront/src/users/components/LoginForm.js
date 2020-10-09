@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import { CSSTransition } from 'react-transition-group';
 import api from '../../services/api';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const LoginForm = props => {
+
+    const auth = useContext(AuthContext);
 
     const submitHandler = async userData => {
         const headers = {
@@ -15,6 +18,7 @@ const LoginForm = props => {
         const { status, message } = response.data;
 
         if (status == 200) {
+            auth.login(response.data.userId, response.data.userName);
             props.signUpSuccess(true, 'logado');
         } else {
             props.signUpSuccess(false, message);
@@ -76,15 +80,15 @@ const LoginForm = props => {
                             <div className={'field space ' + (touched.password && errors.password ? 'input-error' : '')}>
                                 <span className="fa fa-lock"></span>
                                 <input type="password" name="password" id="password" className="pass-key" required placeholder="Senha" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.password} />
-                                <CSSTransition
-                                    in={touched.password && errors.password}
-                                    timeout={200}
-                                    unmountOnExit
-                                    classNames="my-node"
-                                >
-                                    <p className="p-erros" >{errors.password}</p>
-                                </CSSTransition>
                             </div>
+                            <CSSTransition
+                                in={touched.password && errors.password}
+                                timeout={200}
+                                unmountOnExit
+                                classNames="my-node"
+                            >
+                                <p className="p-erros" >{errors.password}</p>
+                            </CSSTransition>
                             <div className="field space">
                                 <input type="submit" value="Entrar" disabled={isSubmitting}/>
                             </div>
