@@ -6,14 +6,14 @@ const getAll = async (req, res) => {
 };
 
 const add = async (req, res) => {
-    const { email, name, password } = req.body;
+    const { email, name, password, type } = req.body;
 
     let existingUser, hashedpassword;
     let response = {};
 
     try {
-        if(!email) {
-            throw new Error('Email não pode ser nulo.');
+        if(!email || !name || !password || !type) {
+            throw new Error('Preencha todos os campos!');
         }
 
         existingUser = await User.findOne({email: email});
@@ -27,7 +27,8 @@ const add = async (req, res) => {
         const createdUser = new User({
             name: name,
             email: email,
-            password: hashedpassword
+            password: hashedpassword,
+            type: type
         });
 
         await createdUser.save();

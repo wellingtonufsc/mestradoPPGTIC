@@ -24,7 +24,7 @@ const SignUpForm = props => {
 
     return(
         <Formik
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ name:'', email: '', password: '', type: 'Distribuidor' }}
             validate={values => {
                 const errors = {};
                 if (!values.email) {
@@ -41,6 +41,10 @@ const SignUpForm = props => {
 
                 if (!values.name) {
                     errors.name = 'Escolha um nome';
+                }
+
+                if (!values.type) {
+                    errors.type = 'Escolha um tipo de usuário';
                 }
                   
                 return errors;
@@ -99,6 +103,21 @@ const SignUpForm = props => {
                                 classNames="my-node"
                             >
                                 <p className="p-erros" >{errors.password}</p>
+                            </CSSTransition>
+                            <div className={'field space ' + (touched.type && errors.type ? 'input-error' : '')}>
+                                <span className="fa fa-address-card"></span>
+                                <select name="type" id="type" className="pass-key" required onChange={handleChange} onBlur={handleBlur} value={values.type} >
+                                    <option value="Distribuidor" >Distribuidor</option>
+                                    <option value="Cliente" >Consumidor</option>
+                                </select>
+                            </div>
+                            <CSSTransition
+                                in={touched.type && errors.type}
+                                timeout={200}
+                                unmountOnExit
+                                classNames="my-node"
+                            >
+                                <p className="p-erros" >{errors.type}</p>
                             </CSSTransition>
                             <div className="field space">
                                 <input type="submit" value="Cadastrar" disabled={isSubmitting}/>
