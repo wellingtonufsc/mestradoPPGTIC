@@ -4,9 +4,10 @@ const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-    id: { type: String, required: true, unique: true },
-    secret_key: { type: String },
-    channel_id: { type: String }
+    user_id: { type: String },
+    seed: { type: String },
+    root: { type: String },
+    device_id: { type: String, unique: true }
 });
   
 productSchema.plugin(uniqueValidator);
