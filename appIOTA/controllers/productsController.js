@@ -33,9 +33,9 @@ const addProductData = async (req, res) => {
             throw new Error('Device field empty!');
         }
 
-        existingProduct = await Product.find({device_id: device});
+        existingProduct = await Product.findOne({device_id: device});
 
-        if (Object.keys(existingProduct).length === 0) {
+        if (!existingProduct) {
             let createdProduct = new Product({
                 device_id: device
             });
@@ -45,11 +45,15 @@ const addProductData = async (req, res) => {
             info = await attachToTangle(req.body);
 
             await Product.updateOne({_id: createdProduct._id}, {
-                seed: info.state.seed,
-                root: info.root
+                mamState: info.state,
+                first_root: info.root
             });
         } else {
-            info = await attachToTangle(req.body, existingProduct.seed);
+            info = await attachToTangle(req.body, existingProduct.mamState);
+
+            await Product.updateOne({_id: existingProduct._id}, {
+                mamState: info.state
+            });
         }
 
         response = {status: 200, message: info};
@@ -64,17 +68,16 @@ async function loadConfiguration() {
     return await Configuration.findOne();
 };
 
-async function attachToTangle(jsonData, seed = null) {
+async function attachToTangle(jsonData, mam_state = null) {
     let config = await loadConfiguration();
     let mamState;
-
-    if (seed) {
-        mamState = Mam.init(config.mam_provider, seed);
-    } else {
+    
+    if(!mam_state) {
         mamState = Mam.init(config.mam_provider);
+        mamState = Mam.changeMode(mamState, config.mam_mode);
+    } else {
+        mamState = mam_state;
     }
-
-    mamState = Mam.changeMode(mamState, config.mam_mode);
 
     const trytes = asciiToTrytes(JSON.stringify(jsonData));
     const message = Mam.create(mamState, trytes);

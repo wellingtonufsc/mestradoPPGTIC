@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
     user_id: { type: String },
-    seed: { type: String },
-    root: { type: String },
+    mamState: { type: JSON },
+    first_root: { type: String },
     device_id: { type: String, unique: true }
 });
   
