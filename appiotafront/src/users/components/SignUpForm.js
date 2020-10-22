@@ -10,16 +10,14 @@ const SignUpForm = props => {
             'Content-Type': 'application/json'
         }
 
-        const response = await api.post('/users/add', userData, headers);
-
-        const { status, message } = response.data;
-
-        if (status == 200) {
+        api.post('/users/add', userData, headers)
+        .then((response) => {
             props.switchMode();
             props.signUpSuccess(true);
-        } else {
-            props.signUpSuccess(false, message);
-        }
+        })
+        .catch((error) => {
+            props.signUpSuccess(false, error.response.data.message);
+        });
     }
 
     return(

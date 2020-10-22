@@ -11,14 +11,17 @@ const Sidebar = () => {
 
     const auth = useContext(AuthContext);
 
-    useEffect(async () => {
-        const response = await api.get('/products/' + auth.userId);
-
-        const { status } = response.data;
-
-        if(status == 500) {
-            toast(response.data.message, {type:'error'});
+    useEffect(() => {
+        async function getProducts() {
+            api.get('/products/' + auth.userId)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                toast(error.response.data.message, {type:'error'})
+            });
         }
+        getProducts();
     }, [auth.userId]);
 
     return (

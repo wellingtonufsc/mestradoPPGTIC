@@ -4,21 +4,27 @@ const Mam = require('@iota/mam');
 const { asciiToTrytes } = require('@iota/converter');
 
 const getProductsByUser = async (req, res) => {
-    const { userId } = req.query;
+    const { userId } = req.params;
 
     let products = [], response = {};
 
     try {
+        if(!userId) {
+            throw new Error('Usuário Indefinido');
+        }
+
         products = await Product.find({userId: userId});
 
         if (products.length < 1) {
             throw new Error('Nenhum Produto encontrado');
         }
 
-        response = {status: 200, products: products};
+        response = {products: products};
+        res.status(200);
 
     } catch (err) {
-        response = {status: 500, message: err.message};
+        response = {message: err.message};
+        res.status(404);
     }
 
     res.json(response);
@@ -46,7 +52,8 @@ const addProductData = async (req, res) => {
 
             await Product.updateOne({_id: createdProduct._id}, {
                 mamState: info.state,
-                first_root: info.root
+                first_root: info.root,
+                user_id: 0
             });
         } else {
             info = await attachToTangle(req.body, existingProduct.mamState);
@@ -56,9 +63,11 @@ const addProductData = async (req, res) => {
             });
         }
 
-        response = {status: 200, message: info};
+        response = {message: info};
+        res.status(200);
     } catch (err) {
-        response = {status: 500, message: err.message};
+        response = {message: err.message};
+        res.status(500);
     }
 
     res.json(response);

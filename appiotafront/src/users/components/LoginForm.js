@@ -13,16 +13,14 @@ const LoginForm = props => {
             'Content-Type': 'application/json'
         }
 
-        const response = await api.post('/users/login', userData, headers);
-
-        const { status, message } = response.data;
-
-        if (status == 200) {
+        api.post('/users/login', userData, headers)
+        .then((response) => {
             auth.login(response.data.userId, response.data.userName);
             props.signUpSuccess(true, 'logado');
-        } else {
-            props.signUpSuccess(false, message);
-        }
+        })
+        .catch((error) => {
+            props.signUpSuccess(false, error.response.data.message);
+        });
     }
 
     return (

@@ -33,9 +33,11 @@ const add = async (req, res) => {
 
         await createdUser.save();
 
-        response = {status: 200, message: 'Cadastrado com sucesso!'};
+        response = {message: 'Cadastrado com sucesso!'};
+        res.status(200);
     } catch (err) {
-        response = {status: 500, message: err.message};
+        response = {message: err.message};
+        res.status(500);
     }
 
     res.json(response);
@@ -58,14 +60,15 @@ const login = async (req, res) => {
             throw new Error('Credenciais Erradas');
         }
 
-        response = {
-            status: 200, 
+        response = { 
             message: 'Login realizado com sucesso!',
             userId: existingUser.id,
             userName: existingUser.name
         };
+        res.status(200);
     } catch (err) {
-        response = {status: 500, message: err.message};
+        response = {message: err.message};
+        res.status(500);
     }
 
     res.json(response);
