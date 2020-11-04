@@ -102,5 +102,44 @@ async function attachToTangle(jsonData, mam_state = null) {
     return info;
 };
 
+const selectProduct = async (req, res) => {
+    const { userId, deviceID, productName } = req.body;
+    let response = {};
+
+    try {
+        if (!userId) {
+            throw new Error('Usuário vazio!');
+        }
+
+        if (!deviceID) {
+            throw new Error('ID do dispositivo não escolhido!');
+        }
+
+        if (!productName) {
+            throw new Error('nome do produto não escolhido!');
+        }
+
+        existingProduct = await Product.findOne({device_id: deviceID});
+
+        if (!existingProduct) {
+            throw new Error('Nenhum produto cadastrado com esse ID!');
+        }
+
+        await Product.updateOne({_id: existingProduct._id}, {
+            user_id: userId,
+            name: productName
+        });
+
+        response = {message: 'Cadastrado com sucesso!'};
+        res.status(200);
+    } catch (err) {
+        response = {message: err.message};
+        res.status(500);
+    }
+
+    res.json(response);
+}
+
 exports.getProductsByUser = getProductsByUser;
 exports.addProductData = addProductData;
+exports.selectProduct = selectProduct;

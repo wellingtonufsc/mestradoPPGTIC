@@ -11,6 +11,10 @@
     right: 0;
     bottom: 0;
     position: absolute;
+    text-align: center;
     padding: 20px;
     background-color: #343a40;
+    display: flex;
+  justify-content: center;
+  align-items: center; 
 }
