@@ -17,7 +17,7 @@ const Login = () => {
         if (success) {
             toast("Cadastrado com sucesso! Por favor, faça o log in", {type:'dark'});
             
-            if (message == 'logado') {
+            if (message === 'logado') {
                 history.push('/dashboard');
             }
         } else {

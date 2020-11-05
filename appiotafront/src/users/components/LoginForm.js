@@ -91,7 +91,7 @@ const LoginForm = props => {
                                 <input type="submit" value="Entrar" disabled={isSubmitting}/>
                             </div>
                             <div className="pass">
-                                <p>Não tem uma conta? <a onClick={props.switchMode}>Cadastre-se!</a></p>
+                                <p>Não tem uma conta? <a href="/#" onClick={props.switchMode}>Cadastre-se!</a></p>
                             </div>
                         </form>
                     </div>

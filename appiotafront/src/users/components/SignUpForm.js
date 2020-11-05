@@ -121,7 +121,7 @@ const SignUpForm = props => {
                                 <input type="submit" value="Cadastrar" disabled={isSubmitting}/>
                             </div>
                             <div className="pass">
-                                <p>Já tem uma conta? <a onClick={props.switchMode}>Faça Login!</a></p>
+                                <p>Já tem uma conta? <a href="/#" onClick={props.switchMode}>Faça Login!</a></p>
                             </div>
                         </form>
                     </div>

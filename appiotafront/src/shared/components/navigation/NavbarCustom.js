@@ -15,7 +15,7 @@ const NavbarCustom = () => {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#"><img src="img/iota-logo.png" className="img-logo-navbar" /></Navbar.Brand>
+            <Navbar.Brand href="/#"><img src="img/iota-logo.png" className="img-logo-navbar" alt="Logo" /></Navbar.Brand>
             <h1>Bem vindo, {auth.userName}!</h1>
             <Button variant="outline-info" onClick={onClickHandler} className="ml-auto" >Sair</Button>
         </Navbar>
