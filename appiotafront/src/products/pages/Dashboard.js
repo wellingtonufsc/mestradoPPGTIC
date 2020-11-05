@@ -4,9 +4,10 @@ import Sidebar from '../../shared/components/navigation/Sidebar';
 import api from '../../services/api';
 import { AuthContext } from '../../shared/context/auth-context';
 import { ToastContainer, toast } from 'react-toastify';
-import { BrowserRouter , Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import AddProduct from '../components/addProduct';
 import ViewProduct from '../components/ViewProduct';
+import DashboardIndex from '../components/DashboardIndex';
 import './Dashboard.scss';
 
 const Dashboard = () => {
@@ -19,7 +20,7 @@ const Dashboard = () => {
             api.get('/products/' + (auth.userType === 'Distribuidor' ? auth.userId : 'getExisting'))
                 .then((response) => {
                     setProducts(response.data.products);
-                    toast('Logado com sucesso!')
+                    toast('Logado com sucesso!', {type:'dark'})
                 })
                 .catch((error) => {
                     toast(error.response.data.message, {type:'error'})
@@ -33,20 +34,17 @@ const Dashboard = () => {
             <NavbarCustom></NavbarCustom>
             <Sidebar products={products}></Sidebar>
             <ToastContainer 
-                position="top-left"
+                position="top-center"
             />
 
             <div className="dashboard-content">
-                <BrowserRouter>
+                <Route render={({ match: { url } }) => (
                     <Switch>
-                        <Route path="/dashboard/product/view/:productId" exact>
-                            <ViewProduct></ViewProduct>
-                        </Route>
-                        <Route path="/dashboard/product/add">
-                            <AddProduct></AddProduct>
-                        </Route>
+                        <Route path={url + "/product/view/:productId"} exact render={() => <ViewProduct />} />
+                        <Route path={url + "/product/add"} render={() => <AddProduct />} />
+                        <Route path={url} render={() => <DashboardIndex />} />
                     </Switch>
-                </BrowserRouter>
+                )} />
             </div>
         </div>
     );

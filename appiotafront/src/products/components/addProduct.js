@@ -60,7 +60,7 @@ const AddProduct = () => {
             }) => (
                 <div className="form-container">
                     <ToastContainer 
-                        position="top-left"
+                        position="top-center"
                     />
                     <header>Adicionar um Produto</header>
                     <form onSubmit={handleSubmit} >

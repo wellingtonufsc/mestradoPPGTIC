@@ -30,17 +30,15 @@ function App() {
                 unmountOnExit
                 timeout={1000}
                 classNames={'pageSliderLeft'}
-                key={location.key}
+                key={location.pathname.split('/')[1]}
               >
                 <Switch location={location}>
-                  <Route path="/" exact>
+                  <Route path="/dashboard" render={() => <Dashboard />} />
+                  <Route path="/" render={() => (
                     <React.Fragment>
                       <Login /> <Background />
                     </React.Fragment>
-                  </Route>
-                  <Route path="/dashboard">
-                    <Dashboard />
-                  </Route>
+                  )} />
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
