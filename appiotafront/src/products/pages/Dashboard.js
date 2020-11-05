@@ -14,14 +14,14 @@ const Dashboard = () => {
 
     useEffect(() => {
         async function getProducts() {
-            api.get('/products/' + auth.userId)
-            .then((response) => {
-                setProducts(response.data.products);
-                console.log(response);
-            })
-            .catch((error) => {
-                toast(error.response.data.message, {type:'error'})
-            });
+            api.get('/products/' + (auth.userType == 'Distribuidor' ? auth.userId : 'getExisting'))
+                .then((response) => {
+                    setProducts(response.data.products);
+                    toast('Logado com sucesso!')
+                })
+                .catch((error) => {
+                    toast(error.response.data.message, {type:'error'})
+                });
         }
         getProducts();
     }, [auth.userId]);

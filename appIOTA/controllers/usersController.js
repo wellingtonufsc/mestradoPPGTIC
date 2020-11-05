@@ -63,7 +63,8 @@ const login = async (req, res) => {
         response = { 
             message: 'Login realizado com sucesso!',
             userId: existingUser.id,
-            userName: existingUser.name
+            userName: existingUser.name,
+            userType: existingUser.type
         };
         res.status(200);
     } catch (err) {

@@ -3,6 +3,28 @@ const Configuration = require('../models/configuration');
 const Mam = require('@iota/mam');
 const { asciiToTrytes } = require('@iota/converter');
 
+const getAll = async (req, res) => {
+    let products = [], response = {};
+
+    try {
+
+        products = await Product.find({user_id:{$ne:true}});
+
+        if (products.length < 1) {
+            throw new Error('Não existem produtos cadastrados na plataforma!');
+        }
+
+        response = {products: products};
+        res.status(200);
+
+    } catch (err) {
+        response = {message: err.message};
+        res.status(404);
+    }
+
+    res.json(response);
+}
+
 const getProductsByUser = async (req, res) => {
     const { userId } = req.params;
 
@@ -13,7 +35,7 @@ const getProductsByUser = async (req, res) => {
             throw new Error('Usuário Indefinido');
         }
 
-        products = await Product.find({userId: userId});
+        products = await Product.find({user_id: userId});
 
         if (products.length < 1) {
             throw new Error('Nenhum Produto encontrado');
@@ -140,6 +162,7 @@ const selectProduct = async (req, res) => {
     res.json(response);
 }
 
+exports.getAll = getAll;
 exports.getProductsByUser = getProductsByUser;
 exports.addProductData = addProductData;
 exports.selectProduct = selectProduct;

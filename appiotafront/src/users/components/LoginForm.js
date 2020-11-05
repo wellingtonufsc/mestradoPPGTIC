@@ -15,7 +15,7 @@ const LoginForm = props => {
 
         api.post('/users/login', userData, headers)
         .then((response) => {
-            auth.login(response.data.userId, response.data.userName);
+            auth.login(response.data.userId, response.data.userName, response.data.userType);
             props.signUpSuccess(true, 'logado');
         })
         .catch((error) => {

@@ -9,7 +9,7 @@ import { useAuth } from './shared/hooks/auth-hook';
 import './App.scss';
 
 function App() {
-  const { userName, login, logout, userId } = useAuth();
+  const { userName, login, logout, userId, userType } = useAuth();
 
   return (
     <AuthContext.Provider
@@ -17,6 +17,7 @@ function App() {
         isLoggedIn: !!userName,
         userName: userName,
         userId: userId,
+        userType: userType,
         login: login,
         logout: logout
       }}
