@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
+import Temperature from '../../shared/components/graphs/Temperature';
+import Localization from '../../shared/components/graphs/Localization';
 import api from '../../services/api';
+import './ViewProduct.scss';
 
 const Mam = require('@iota/mam');
 const { trytesToAscii } = require('@iota/converter');
@@ -45,7 +48,7 @@ const ViewProduct = () => {
 
         getProduct();
         getConfig();
-    }, []);
+    }, [productID]);
 
     useEffect(() => {
         if (product && config) {
@@ -66,25 +69,34 @@ const ViewProduct = () => {
         }
     }, [product, config]);
 
-    let page = <h1>Carregando Dados...</h1>;
+    let page = <div className="graphs"><h1>Carregando Dados...</h1></div>;
+    let temp = [], lat = [], lon = [], time = [];
 
     if (Object.keys(message).length > 0 && message.constructor === Object) {
-        
-        page = Object.keys(message).map((oneKey, i) => {
-            return (
-                <h1 key={i}>{message[oneKey].data.temp}</h1>
-            )
-        });
+
+        for (let i = 0; i < Object.keys(message).length; i++) {
+            temp.push(message[i].data.temp);
+            lat.push(message[i].data.lat);
+            lon.push(message[i].data.lon);
+            time.push(message[i].timestamp);
+        }
+
+        page = <div className="graphs">
+                <Temperature temp={temp} time={time} />
+                <Localization lat={lat} lon={lon} time={time} />
+            </div>;
     }
 
     return (
-        <div>
+        <div className="view-page" >
             <ToastContainer 
                 position="top-center"
             />
-            <div>
-                {page}
-            </div>
+            {user && (
+                <h1 className="main-title" >{product.name} do {user}</h1>
+            )}
+            <hr />
+            {page}
         </div>
     )
 }
