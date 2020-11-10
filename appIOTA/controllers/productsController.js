@@ -124,6 +124,24 @@ async function attachToTangle(jsonData, mam_state = null) {
     return info;
 };
 
+const loadConfig = async (req, res) => {
+    try {
+        let config = await loadConfiguration();
+
+        if (!config) {
+            throw new Error('Não foi possível carregar as configurações')
+        }
+
+        response = {config: config};
+        res.status(200);
+    } catch (err) {
+        response = {message: err.message};
+        res.status(500);
+    }
+
+    res.json(response);
+}
+
 const selectProduct = async (req, res) => {
     const { userId, deviceID, productName } = req.body;
     let response = {};
@@ -162,7 +180,34 @@ const selectProduct = async (req, res) => {
     res.json(response);
 }
 
+const view = async (req, res) => {
+    const { productId } = req.params;
+    let product = [], response = {};
+
+    try {
+        if (!productId) {
+            throw new Error('ID do produto inválido');
+        }
+
+        product = await Product.findOne({_id: productId}, {user_id: 1, first_root: 1, name: 1});
+
+        if (!product) {
+            throw new Error('Produto não encontrado');
+        }
+
+        response = {product: product};
+        res.status(200);
+    } catch (err) {
+        response = {message: err.message};
+        res.status(500);
+    }
+
+    res.json(response);
+}
+
 exports.getAll = getAll;
 exports.getProductsByUser = getProductsByUser;
 exports.addProductData = addProductData;
 exports.selectProduct = selectProduct;
+exports.loadConfig = loadConfig;
+exports.view = view;

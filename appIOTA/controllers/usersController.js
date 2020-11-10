@@ -43,6 +43,31 @@ const add = async (req, res) => {
     res.json(response);
 };
 
+const view = async (req, res) => {
+    const { userId } = req.params;
+    let user = [], response = {};
+
+    try {
+        if (!userId) {
+            throw new Error('ID do usuário inválido');
+        }
+
+        user = await User.findOne({_id: userId}, {name: 1});
+
+        if (!user) {
+            throw new Error('Usuário não encontrado');
+        }
+
+        response = {user: user};
+        res.status(200);
+    } catch (err) {
+        response = {message: err.message};
+        res.status(500);
+    }
+
+    res.json(response);
+}
+
 const login = async (req, res) => {
     const { email, password } = req.body;
 
@@ -77,4 +102,5 @@ const login = async (req, res) => {
 
 exports.getAll = getAll;
 exports.add = add;
+exports.view = view;
 exports.login = login;
