@@ -21,7 +21,6 @@ const Temperature = props => {
             data2.push({x: (new Date(props.time[index] * 1000)).toLocaleString() , y: props.temp[index]});
         });
 
-        console.log(data2);
         setData(data2)
         
     }, [props]);
