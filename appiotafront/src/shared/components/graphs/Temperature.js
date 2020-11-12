@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
-    // HorizontalGridLines,
-    // VerticalGridLines,
     FlexibleWidthXYPlot,
     XAxis,
-    XYPlot,
     YAxis,
     LineMarkSeries
   } from 'react-vis';

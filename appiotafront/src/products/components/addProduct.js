@@ -19,7 +19,7 @@ const AddProduct = () => {
 
         api.post('/products/selectProduct/', data, headers)
             .then((response) => {
-                toast(response.data.message)
+                toast(response.data.message, {type: 'dark'})
             })
             .catch((error) => {
                 toast(error.response.data.message, {type:'error'})

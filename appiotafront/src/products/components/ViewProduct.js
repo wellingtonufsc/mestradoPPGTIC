@@ -18,6 +18,7 @@ const ViewProduct = () => {
     const productID = useParams().productId;
 
     useEffect(() => {
+        setMessage({});
         async function getProduct() {
             api.get('/products/view/' + productID)
                 .then((response) => {
@@ -83,8 +84,10 @@ const ViewProduct = () => {
 
         page = <div className="graphs">
                 <Temperature temp={temp} time={time} />
-                <Localization lat={lat} lon={lon} time={time} />
+                <Localization lat={lat} lon={lon} time={time} root={product.first_root} config={config} />
             </div>;
+    } else {
+        page = <div className="graphs"><h1>Carregando Dados...</h1></div>;
     }
 
     return (

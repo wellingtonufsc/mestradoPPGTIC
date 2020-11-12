@@ -1,10 +1,33 @@
 .custom-pin {
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
- }
- .custom-pin img {
-    width: 100%;
-    height: 100%;
- }
+   height: 30px;
+   width: 30px;
+   display: flex;
+   justify-content: center;
+
+   img {
+      width: 100%;
+      height: 100%;
+   }
+
+   span, a {
+      position: absolute;
+      left: 25px;
+      top: 0;
+      color: white;
+      display: none;
+      opacity: 0;
+      transition: all 1s;
+      font-size: 12px;
+      line-height: 14px;
+   }
+
+   a {
+      top: 30px;
+      color: lightblue;
+   }
+
+   &:hover span, &:hover a {
+      opacity: 1;
+      display: block;
+   }
+}
