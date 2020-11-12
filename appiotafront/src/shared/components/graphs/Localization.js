@@ -5,17 +5,19 @@ import './Localization.scss';
 const applyToArray = (func, array) => func.apply(Math, array)
 
 const getBoundsForPoints = (points) => {
-  // Calculate corner values of bounds
+  
   const pointsLong = points.time.map((point, index) => points.lon[index])
   const pointsLat = points.time.map((point, index) => points.lat[index])
   const cornersLongLat = [
     [applyToArray(Math.min, pointsLong), applyToArray(Math.min, pointsLat)],
     [applyToArray(Math.max, pointsLong), applyToArray(Math.max, pointsLat)]
   ]
-  // Use WebMercatorViewport to get center longitude/latitude and zoom
+  
   const viewport = new WebMercatorViewport({ width: 800, height: 600 })
-    .fitBounds(cornersLongLat, { padding: 200 }) // Can also use option: offset: [0, -100]
+    .fitBounds(cornersLongLat, { padding: 200 })
+
   const { longitude, latitude, zoom } = viewport
+
   return { longitude, latitude, zoom }
 }
 
@@ -50,7 +52,7 @@ const Localization = props => {
                         <div className="custom-pin">
                             <img src="/img/marker.png" alt="Gem" />
                             <span>{(new Date(data * 1000)).toLocaleString()}</span>
-                            <a href={mamExplorerLink + props.root} target="_blank" >Comprove</a>
+                            <a href={mamExplorerLink + props.root} target="_blank" rel="noopener noreferrer" >Comprove</a>
                         </div>
                     </Marker>
                 ))}

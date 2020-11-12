@@ -12,22 +12,26 @@ import './Dashboard.scss';
 
 const Dashboard = () => {
 
+    const [reload, setReload] = useState(false);
     const [products, setProducts] = useState({});
     const auth = useContext(AuthContext);
+
+    useEffect(() => {
+        toast('Logado com sucesso!', {type:'dark'})
+    }, []);
 
     useEffect(() => {
         async function getProducts() {
             api.get('/products/' + (auth.userType === 'Distribuidor' ? auth.userId : 'getExisting'))
                 .then((response) => {
                     setProducts(response.data.products);
-                    toast('Logado com sucesso!', {type:'dark'})
                 })
                 .catch((error) => {
                     toast(error.response.data.message, {type:'error'})
                 });
         }
         getProducts();
-    }, [auth.userId, auth.userType]);
+    }, [auth.userId, auth.userType, reload]);
 
     return(
         <div className="dashboard">
@@ -41,7 +45,7 @@ const Dashboard = () => {
                 <Route render={({ match: { url } }) => (
                     <Switch>
                         <Route path={url + "/product/view/:productId"} exact render={() => <ViewProduct />} />
-                        <Route path={url + "/product/add"} render={() => <AddProduct />} />
+                        <Route path={url + "/product/add"} render={() => <AddProduct reset={() => setReload(prev => (!prev))}/>} />
                         <Route path={url} render={() => <DashboardIndex />} />
                     </Switch>
                 )} />

@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import api from '../../services/api';
 import './addProduct.scss';
 
-const AddProduct = () => {
+const AddProduct = props => {
 
     const auth = useContext(AuthContext);
 
@@ -19,9 +19,11 @@ const AddProduct = () => {
 
         api.post('/products/selectProduct/', data, headers)
             .then((response) => {
-                toast(response.data.message, {type: 'dark'})
+                props.reset();
+                toast(response.data.message, {type: 'dark'});
             })
             .catch((error) => {
+                console.log(error);
                 toast(error.response.data.message, {type:'error'})
             });
     }
