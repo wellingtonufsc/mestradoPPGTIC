@@ -65,9 +65,11 @@ const ViewProduct = () => {
                 });
 
                 setMessage(Object.assign({}, msgs));
+
+                setTimeout(addListenerMam(), 3000);
             }
     
-            addListenerMam();
+            addListenerMam()
         }
     }, [product, config]);
 
