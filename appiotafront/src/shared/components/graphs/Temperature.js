@@ -55,6 +55,7 @@ const Temperature = props => {
                     </Hint>
                 )}
             </FlexibleWidthXYPlot>
+            <a className="link-comprove" href={mamExplorerLink + props.root} target="_blank" rel="noopener noreferrer" >Comprove</a>
         </div>
     );
 }

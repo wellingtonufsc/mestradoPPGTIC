@@ -2,5 +2,22 @@
 
 .half {
     width: 100%;
-    margin: auto 0;
+    margin: 0 0 auto;
+}
+
+.link-comprove {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid #02807f;
+    color: #02807f;
+    padding: 10px 20px;
+    transition: all 1s;
+    float: left;
+
+    &:hover {
+        background-color: #1c4f4f;
+        border: 1px solid white;
+        color: white;
+        text-decoration: none;
+    }
 }

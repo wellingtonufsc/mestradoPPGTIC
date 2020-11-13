@@ -1,5 +1,6 @@
 .bg-dark {
     background-color: #1a1919!important;
+    z-index: 99;
 }
 
 .img-logo-navbar {
@@ -12,4 +13,10 @@ h1 {
     font-size: 28px;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+    }
 }

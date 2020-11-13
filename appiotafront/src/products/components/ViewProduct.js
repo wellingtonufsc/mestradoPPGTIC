@@ -11,6 +11,7 @@ const { trytesToAscii } = require('@iota/converter');
 
 const ViewProduct = () => {
 
+    const [view, setView] = useState(true);
     const [product, setProduct] = useState(null);
     const [config, setConfig] = useState(null);
     const [user, setUser] = useState(null);
@@ -82,10 +83,15 @@ const ViewProduct = () => {
             time.push(message[i].timestamp);
         }
 
-        page = <div className="graphs">
+        if (view) {
+            page = <div className="graphs">
                 <Temperature temp={temp} time={time} root={product.first_root} config={config} />
+            </div>;
+        } else {
+            page = <div className="graphs">
                 <Localization lat={lat} lon={lon} time={time} root={product.first_root} config={config} />
             </div>;
+        }
     } else {
         page = <div className="graphs"><h1>Carregando Dados...</h1></div>;
     }
@@ -96,7 +102,13 @@ const ViewProduct = () => {
                 position="top-center"
             />
             {user && (
-                <h1 className="main-title" >{product.name} do {user}</h1>
+                <div className="view-header">
+                    <h1 className="main-title" >{product.name} do {user}</h1>
+                    <div className="buttons">
+                        <button className={view === true ? 'temperature active' : 'temperature'} onClick={() => setView(true)}>Temperatura</button>
+                        <button className={view === false ? 'localization active' : 'localization'} onClick={() => setView(false)}>Localização</button>
+                    </div>
+                </div>
             )}
             <hr />
             {page}
