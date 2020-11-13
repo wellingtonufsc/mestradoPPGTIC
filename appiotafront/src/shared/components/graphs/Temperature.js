@@ -27,9 +27,9 @@ const Temperature = props => {
     }, [props]);
 
     return (
-        <div className="half" >
+        <div className="half">
             <FlexibleWidthXYPlot height={400} xType="ordinal" onMouseLeave={() => {setValue(null)}} >
-                <XAxis title="Datas" />
+                <XAxis title="Datas" tickLabelAngle={-45}/>
                 <YAxis title="Temperatura ºC" />
                 <LineMarkSeries data={data} onNearestXY={(datapoint, event)=>{setValue(datapoint)}} />
                 {value && (
