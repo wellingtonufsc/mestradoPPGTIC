@@ -83,7 +83,7 @@ const ViewProduct = () => {
         }
 
         page = <div className="graphs">
-                <Temperature temp={temp} time={time} />
+                <Temperature temp={temp} time={time} root={product.first_root} config={config} />
                 <Localization lat={lat} lon={lon} time={time} root={product.first_root} config={config} />
             </div>;
     } else {
