@@ -57,6 +57,7 @@ const addProductData = async (req, res) => {
     let response = {}, info = {};
 
     for(var i = 1; i < req.body.length; i++) {
+        console.log(req.body[i]);
         req.body[i].signals.forEach(signal => {
             console.log(signal);
         });
