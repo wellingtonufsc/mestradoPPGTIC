@@ -53,8 +53,8 @@ const getProductsByUser = async (req, res) => {
 };
 
 const addProductData = async (req, res) => {
-    console.log(req);
     console.log(red.body);
+    return;
     const { device } = req.body;
     let response = {}, info = {};
 
