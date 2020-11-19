@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/api/users', require("./routes/usersRoutes"));
+app.use('/api/users', require("./routes/usersRoutes" ));
 app.use('/api/products', require("./routes/productsRoutes"));
 
 mongoose.connect('mongodb+srv://cluster0.cxkom.mongodb.net/tcc', {useNewUrlParser: true})
