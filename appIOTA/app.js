@@ -14,7 +14,7 @@ app.use(cors());
 app.use('/api/users', require("./routes/usersRoutes"));
 app.use('/api/products', require("./routes/productsRoutes"));
 
-mongoose.connect('mongodb://localhost:27017/tcc', {useNewUrlParser: true})
+mongoose.connect('mongo "mongodb+srv://cluster0.cxkom.mongodb.net/Cluster0" --username mirts', {useNewUrlParser: true})
 .then(() => {
     console.log('Connected to database!');
     app.listen(process.env.PORT || 3001, () => {
