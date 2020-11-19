@@ -56,9 +56,10 @@ const addProductData = async (req, res) => {
     let device = req.body[0].deviceUUID;
     let response = {}, info = {};
 
-    for(var i = 1; i < req.body.length; i++) {
-        console.log(req.body[i]);
-        req.body[i].signals.forEach(signal => {
+    console.log(req.body[0]);
+
+    if(req.body[0].signals) {
+        req.body[0].signals.forEach(signal => {
             console.log(signal);
         });
     }
