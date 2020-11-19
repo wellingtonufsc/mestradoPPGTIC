@@ -54,11 +54,11 @@ const getProductsByUser = async (req, res) => {
 
 const addProductData = async (req, res) => {
     console.log('------------------');
-    req.body.forEach(message => {
-        const device = message.deviceUUID;
+    const device = req.body.forEach(message => {
         message.signals.forEach(signal => {
             console.log(signal);
         });
+        return message.deviceUUID;
     });
     //const { device } = req.body;
     let response = {}, info = {};
