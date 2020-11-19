@@ -54,6 +54,7 @@ const getProductsByUser = async (req, res) => {
 
 const addProductData = async (req, res) => {
     console.log(req);
+    console.log(req.body.deviceUUID);
     console.log(req.body.signals + '     AQUIIIIIIIIIIIIIIII');
     const { device } = req.body;
     let response = {}, info = {};
