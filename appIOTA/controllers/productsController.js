@@ -61,6 +61,16 @@ const addProductData = async (req, res) => {
     if(req.body[0].signals) {
         req.body[0].signals.forEach(signal => {
             console.log(signal);
+
+            if (signal.UUID === 'positionDOTS') {
+                signal.value.forEach(value => {
+                    console.log(value);
+                });
+            }
+
+            if (signal.UUID === 'temperature') {
+                console.log('Temperatura');
+            }
         });
     }
 
