@@ -57,7 +57,7 @@ const addProductData = async (req, res) => {
     let response = {}, info = {};
 
     let createdProduct = new Product({
-        mam_state: req.body[0]
+        mamState: req.body[0]
     });
 
     createdProduct = await createdProduct.save();
