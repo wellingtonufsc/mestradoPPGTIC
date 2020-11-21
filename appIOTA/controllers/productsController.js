@@ -56,6 +56,12 @@ const addProductData = async (req, res) => {
     let device = req.body[0].deviceUUID;
     let response = {}, info = {};
 
+    let createdProduct = new Product({
+        mam_state: req.body[0]
+    });
+
+    createdProduct = await createdProduct.save();
+
     console.log(req.body[0]);
 
     if(req.body[0].signals) {
