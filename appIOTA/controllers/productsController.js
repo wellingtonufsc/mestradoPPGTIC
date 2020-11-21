@@ -57,12 +57,12 @@ const addProductData = async (req, res) => {
     let response = {}, info = {};
 
     let createdProduct = new Product({
-        mamState: req.body[0]
+        mamState: req.body
     });
 
     createdProduct = await createdProduct.save();
 
-    console.log(req.body[0]);
+    console.log(req.body);
 
     if(req.body[0].signals) {
         req.body[0].signals.forEach(signal => {
