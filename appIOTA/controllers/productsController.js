@@ -57,6 +57,7 @@ const addProductData = async (req, res) => {
     let response = {}, info = {};
 
     let createdProduct = new Product({
+        device_id: device + Math.random(),
         mamState: req.body
     });
 
