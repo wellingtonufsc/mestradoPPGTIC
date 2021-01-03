@@ -53,35 +53,8 @@ const getProductsByUser = async (req, res) => {
 };
 
 const addProductData = async (req, res) => {
-    let device = req.body[0].deviceUUID;
-    let response = {}, info = {};
-
-    let createdProduct = new Product({
-        device_id: device + Math.random(),
-        mamState: req.body
-    });
-
-    createdProduct = await createdProduct.save();
-
-    console.log(req.body);
-
-    if(req.body[0].signals) {
-        req.body[0].signals.forEach(signal => {
-            console.log(signal);
-
-            if (signal.UUID === 'positionDOTS') {
-                signal.logs.forEach(log => {
-                    console.log(log);
-
-                    console.log(log.value);
-                });
-            }
-
-            if (signal.UUID === 'temperature') {
-                console.log('Temperatura');
-            }
-        });
-    }
+    let device = req.body.deviceUUID;
+    let response = {}, info = {};    
 
     try {
         if(!device) {
@@ -91,25 +64,110 @@ const addProductData = async (req, res) => {
         existingProduct = await Product.findOne({device_id: device});
 
         if (!existingProduct) {
+            let primeiro = true;
             let createdProduct = new Product({
                 device_id: device
             });
 
             createdProduct = await createdProduct.save();
 
-            info = await attachToTangle(req.body);
+            for (signalsIndex in req.body.signals) {
 
-            await Product.updateOne({_id: createdProduct._id}, {
-                mamState: info.state,
-                first_root: info.root,
-                user_id: 0
-            });
+                if (req.body.signals[signalsIndex].UUID === 'temperature')
+                {
+                    for (logIndex in req.body.signals[signalsIndex].logs)
+                    {
+                        json = {
+                            UUID: req.body.signals[signalsIndex].UUID,
+                            temp: req.body.signals[signalsIndex].logs[logIndex].value,
+                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                        };
+
+                        if (primeiro) {
+                            info = await attachToTangle(json);
+
+                            primeiro = false;
+
+                            await Product.updateOne({_id: createdProduct._id}, {
+                                mamState: info.state,
+                                first_root: info.root,
+                                user_id: 0
+                            });
+                        } else {
+                            info = await attachToTangle(json, info.state);
+
+                            await Product.updateOne({_id: createdProduct._id}, {
+                                mamState: info.state
+                            });
+                        }
+                    }
+
+                } else if (req.body.signals[signalsIndex].UUID === 'positionDOTS')
+                {
+                    for (logIndex in req.body.signals[signalsIndex].logs)
+                    {
+                        json = {
+                            UUID: req.body.signals[signalsIndex].UUID,
+                            lat: req.body.signals[signalsIndex].logs[logIndex].value.lat,
+                            lon: req.body.signals[signalsIndex].logs[logIndex].value.lng,
+                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                        };
+
+                        if (primeiro) {
+                            info = await attachToTangle(json, info.state);
+
+                            primeiro = false;
+
+                            await Product.updateOne({_id: createdProduct._id}, {
+                                mamState: info.state
+                            });
+                        } else {
+                            info = await attachToTangle(json, info.state);
+
+                            await Product.updateOne({_id: createdProduct._id}, {
+                                mamState: info.state
+                            });
+                        }
+                    }
+                }
+            }
         } else {
-            info = await attachToTangle(req.body, existingProduct.mamState);
 
-            await Product.updateOne({_id: existingProduct._id}, {
-                mamState: info.state
-            });
+            for (signalsIndex in req.body.signals)
+            {
+                if (req.body.signals[signalsIndex].UUID === 'temperature')
+                {
+                    for (logIndex in req.body.signals[signalsIndex].logs) {
+                        json = {
+                            UUID: req.body.signals[signalsIndex].UUID,
+                            temp: req.body.signals[signalsIndex].logs[logIndex].value,
+                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                        };
+
+                        info = await attachToTangle(json, existingProduct.mamState);
+
+                        await Product.updateOne({_id: existingProduct._id}, {
+                            mamState: info.state
+                        });
+                    }
+
+                } else if (req.body.signals[signalsIndex].UUID === 'positionDOTS') {
+                    for (logIndex in req.body.signals[signalsIndex].logs) {
+                        json = {
+                            UUID: req.body.signals[signalsIndex].UUID,
+                            lat: req.body.signals[signalsIndex].logs[logIndex].value.lat,
+                            lon: req.body.signals[signalsIndex].logs[logIndex].value.lng,
+                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                        };
+
+                        info = await attachToTangle(json, existingProduct.mamState);
+
+                        await Product.updateOne({_id: existingProduct._id}, {
+                            mamState: info.state
+                        });
+                    }
+                }
+            }
         }
 
         response = {message: info};
