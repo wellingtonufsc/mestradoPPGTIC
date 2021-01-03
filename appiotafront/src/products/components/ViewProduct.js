@@ -59,12 +59,14 @@ const ViewProduct = () => {
                 const result = await Mam.fetch(product.first_root, config.mam_mode);
                 let msgs = [];
     
-                result.messages.forEach(message => {
-                    const msg = JSON.parse(trytesToAscii(message));
-                    msgs.push(msg);
-                });
+                if (result && result.messages) {
+                    result.messages.forEach(message => {
+                        const msg = JSON.parse(trytesToAscii(message));
+                        msgs.push(msg);
+                    });
 
-                setMessage(Object.assign({}, msgs));
+                    setMessage(Object.assign({}, msgs));
+                }
 
                 setTimeout(addListenerMam(), 3000);
             }
@@ -74,24 +76,31 @@ const ViewProduct = () => {
     }, [product, config]);
 
     let page = <div className="graphs"><h1>Carregando Dados...</h1></div>;
-    let temp = [], lat = [], lon = [], time = [];
+    let temp = [], lat = [], lon = [], timeTemp = [], timeLoc = [];
 
     if (Object.keys(message).length > 0 && message.constructor === Object) {
 
-        for (let i = 0; i < Object.keys(message).length; i++) {
-            temp.push(message[i].data.temp);
-            lat.push(message[i].data.lat);
-            lon.push(message[i].data.lon);
-            time.push(message[i].timestamp);
+        for (let i = 0; i < Object.keys(message).length; i++)
+        {
+            if (message[i].UUID === 'temperature')
+            {
+                temp.push(message[i].temp);
+                timeTemp.push(message[i].timestamp);
+            } else if (message[i].UUID === 'positionDOTS')
+            {
+                lat.push(message[i].lat);
+                lon.push(message[i].lon);
+                timeLoc.push(message[i].timestamp);
+            }
         }
 
         if (view) {
             page = <div className="graphs">
-                <Temperature temp={temp} time={time} root={product.first_root} config={config} />
+                <Temperature temp={temp} time={timeTemp} root={product.first_root} config={config} />
             </div>;
         } else {
             page = <div className="graphs">
-                <Localization lat={lat} lon={lon} time={time} root={product.first_root} config={config} />
+                <Localization lat={lat} lon={lon} time={timeLoc} root={product.first_root} config={config} />
             </div>;
         }
     } else {

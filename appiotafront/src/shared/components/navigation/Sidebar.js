@@ -24,7 +24,7 @@ const Sidebar = props => {
                 {auth.userType === 'Distribuidor' && (
                     <MenuItem>
                         <Link to="/dashboard/product/add">
-                            Cadastrar Produto
+                            Cadastrar Viagem
                         </Link>
                     </MenuItem>
                 )}

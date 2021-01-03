@@ -64,7 +64,7 @@ const AddProduct = props => {
                     <ToastContainer 
                         position="top-center"
                     />
-                    <header>Adicionar um Produto</header>
+                    <header>Cadastrar uma Viagem</header>
                     <form onSubmit={handleSubmit} >
                         <div className={'field ' + (touched.deviceID && errors.deviceID ? 'input-error' : '')}>
                             <input type="text" name="deviceID" id="deviceID" required placeholder="ID da placa" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.deviceID} />
