@@ -53,7 +53,7 @@ const getProductsByUser = async (req, res) => {
 };
 
 const addProductData = async (req, res) => {
-    let device = req.body.deviceUUID;
+    let device = req.body[0].deviceUUID;
     let response = {}, info = {};
 
     try {
@@ -62,7 +62,6 @@ const addProductData = async (req, res) => {
         }
 
         existingProduct = await Product.findOne({device_id: device});
-        console.log(existingProduct);
 
         if (!existingProduct) {
             let primeiro = true;
