@@ -54,8 +54,7 @@ const getProductsByUser = async (req, res) => {
 
 const addProductData = async (req, res) => {
     let device = req.body.deviceUUID;
-    let response = {}, info = {};    
-    console.log(req.body)
+    let response = {}, info = {};
 
     try {
         if(!device) {
@@ -72,16 +71,16 @@ const addProductData = async (req, res) => {
 
             createdProduct = await createdProduct.save();
 
-            for (signalsIndex in req.body.signals) {
+            for (signalsIndex in req.body[0].signals) {
 
-                if (req.body.signals[signalsIndex].UUID === 'temperature')
+                if (req.body[0].signals[signalsIndex].UUID === 'temperature')
                 {
-                    for (logIndex in req.body.signals[signalsIndex].logs)
+                    for (logIndex in req.body[0].signals[signalsIndex].logs)
                     {
                         json = {
-                            UUID: req.body.signals[signalsIndex].UUID,
-                            temp: req.body.signals[signalsIndex].logs[logIndex].value,
-                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                            UUID: req.body[0].signals[signalsIndex].UUID,
+                            temp: req.body[0].signals[signalsIndex].logs[logIndex].value,
+                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
                         };
 
                         if (primeiro) {
@@ -103,15 +102,15 @@ const addProductData = async (req, res) => {
                         }
                     }
 
-                } else if (req.body.signals[signalsIndex].UUID === 'positionDOTS')
+                } else if (req.body[0].signals[signalsIndex].UUID === 'positionDOTS')
                 {
-                    for (logIndex in req.body.signals[signalsIndex].logs)
+                    for (logIndex in req.body[0].signals[signalsIndex].logs)
                     {
                         json = {
-                            UUID: req.body.signals[signalsIndex].UUID,
-                            lat: req.body.signals[signalsIndex].logs[logIndex].value.lat,
-                            lon: req.body.signals[signalsIndex].logs[logIndex].value.lng,
-                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                            UUID: req.body[0].signals[signalsIndex].UUID,
+                            lat: req.body[0].signals[signalsIndex].logs[logIndex].value.lat,
+                            lon: req.body[0].signals[signalsIndex].logs[logIndex].value.lng,
+                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
                         };
 
                         if (primeiro) {
@@ -134,15 +133,15 @@ const addProductData = async (req, res) => {
             }
         } else {
 
-            for (signalsIndex in req.body.signals)
+            for (signalsIndex in req.body[0].signals)
             {
-                if (req.body.signals[signalsIndex].UUID === 'temperature')
+                if (req.body[0].signals[signalsIndex].UUID === 'temperature')
                 {
-                    for (logIndex in req.body.signals[signalsIndex].logs) {
+                    for (logIndex in req.body[0].signals[signalsIndex].logs) {
                         json = {
-                            UUID: req.body.signals[signalsIndex].UUID,
-                            temp: req.body.signals[signalsIndex].logs[logIndex].value,
-                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                            UUID: req.body[0].signals[signalsIndex].UUID,
+                            temp: req.body[0].signals[signalsIndex].logs[logIndex].value,
+                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
                         };
 
                         info = await attachToTangle(json, existingProduct.mamState);
@@ -152,13 +151,13 @@ const addProductData = async (req, res) => {
                         });
                     }
 
-                } else if (req.body.signals[signalsIndex].UUID === 'positionDOTS') {
-                    for (logIndex in req.body.signals[signalsIndex].logs) {
+                } else if (req.body[0].signals[signalsIndex].UUID === 'positionDOTS') {
+                    for (logIndex in req.body[0].signals[signalsIndex].logs) {
                         json = {
-                            UUID: req.body.signals[signalsIndex].UUID,
-                            lat: req.body.signals[signalsIndex].logs[logIndex].value.lat,
-                            lon: req.body.signals[signalsIndex].logs[logIndex].value.lng,
-                            timestamp: Date.parse(req.body.signals[signalsIndex].logs[logIndex].date)
+                            UUID: req.body[0].signals[signalsIndex].UUID,
+                            lat: req.body[0].signals[signalsIndex].logs[logIndex].value.lat,
+                            lon: req.body[0].signals[signalsIndex].logs[logIndex].value.lng,
+                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
                         };
 
                         info = await attachToTangle(json, existingProduct.mamState);
