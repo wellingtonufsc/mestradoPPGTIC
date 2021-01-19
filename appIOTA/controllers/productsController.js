@@ -55,7 +55,7 @@ const getProductsByUser = async (req, res) => {
 const addProductData = async (req, res) => {
     let device = req.body.deviceUUID;
     let response = {}, info = {};    
-    console.log(req)
+    console.log(req.body)
 
     try {
         if(!device) {
