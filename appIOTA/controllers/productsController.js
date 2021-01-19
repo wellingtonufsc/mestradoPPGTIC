@@ -62,6 +62,7 @@ const addProductData = async (req, res) => {
         }
 
         existingProduct = await Product.findOne({device_id: device});
+        console.log(existingProduct);
 
         if (!existingProduct) {
             let primeiro = true;
