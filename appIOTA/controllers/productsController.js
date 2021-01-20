@@ -53,7 +53,7 @@ const getProductsByUser = async (req, res) => {
 };
 
 const addProductData = async (req, res) => {
-    server.timeout = 2000000;
+    //server.timeout = 2000000;
     let device = req.body[0].deviceUUID;
     let response = {}, info = {};
 
