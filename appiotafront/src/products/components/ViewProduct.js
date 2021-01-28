@@ -82,15 +82,20 @@ const ViewProduct = () => {
 
         for (let i = 0; i < Object.keys(message).length; i++)
         {
-            if (message[i].UUID === 'temperature')
+            for (var signalIndex in message[i].signals)
             {
-                temp.push(message[i].temp);
-                timeTemp.push(message[i].timestamp);
-            } else if (message[i].UUID === 'positionDOTS')
-            {
-                lat.push(message[i].lat);
-                lon.push(message[i].lon);
-                timeLoc.push(message[i].timestamp);
+                if (message[i].signals[signalIndex].UUID == "temperature") {
+                    for (var logIndex in message[i].signals[signalIndex].logs) {
+                        temp.push(message[i].signals[signalIndex].logs[logIndex].value);
+                        timeTemp.push(Date.parse(message[i].signals[signalIndex].logs[logIndex].date)/1000);
+                    }
+                } else if (message[i].signals[signalIndex].UUID == "positionDOTS") {
+                    for (var logIndex in message[i].signals[signalIndex].logs) {
+                        lat.push(message[i].signals[signalIndex].logs[logIndex].value.lat);
+                        lon.push(message[i].signals[signalIndex].logs[logIndex].value.lng);
+                        timeLoc.push(Date.parse(message[i].signals[signalIndex].logs[logIndex].date)/1000);
+                    }
+                }
             }
         }
 

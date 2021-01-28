@@ -53,10 +53,11 @@ const getProductsByUser = async (req, res) => {
 };
 
 const addProductData = async (req, res) => {
-    //server.timeout = 2000000;
-    res.connection.setTimeout(0);
     let device = req.body[0].deviceUUID;
+    let body = req.body[0];
     let response = {}, info = {};
+
+    delete body['deviceUUID'];
 
     try {
         if(!device) {
@@ -66,110 +67,26 @@ const addProductData = async (req, res) => {
         existingProduct = await Product.findOne({device_id: device});
 
         if (!existingProduct) {
-            let primeiro = true;
             let createdProduct = new Product({
                 device_id: device
             });
 
             createdProduct = await createdProduct.save();
 
-            for (signalsIndex in req.body[0].signals) {
+            info = await attachToTangle(body);
 
-                if (req.body[0].signals[signalsIndex].UUID === 'temperature')
-                {
-                    for (logIndex in req.body[0].signals[signalsIndex].logs)
-                    {
-                        json = {
-                            UUID: req.body[0].signals[signalsIndex].UUID,
-                            temp: req.body[0].signals[signalsIndex].logs[logIndex].value,
-                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
-                        };
-
-                        if (primeiro) {
-                            info = await attachToTangle(json);
-
-                            primeiro = false;
-
-                            await Product.updateOne({_id: createdProduct._id}, {
-                                mamState: info.state,
-                                first_root: info.root,
-                                user_id: 0
-                            });
-                        } else {
-                            info = await attachToTangle(json, info.state);
-
-                            await Product.updateOne({_id: createdProduct._id}, {
-                                mamState: info.state
-                            });
-                        }
-                    }
-
-                } else if (req.body[0].signals[signalsIndex].UUID === 'positionDOTS')
-                {
-                    for (logIndex in req.body[0].signals[signalsIndex].logs)
-                    {
-                        json = {
-                            UUID: req.body[0].signals[signalsIndex].UUID,
-                            lat: req.body[0].signals[signalsIndex].logs[logIndex].value.lat,
-                            lon: req.body[0].signals[signalsIndex].logs[logIndex].value.lng,
-                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
-                        };
-
-                        if (primeiro) {
-                            info = await attachToTangle(json, info.state);
-
-                            primeiro = false;
-
-                            await Product.updateOne({_id: createdProduct._id}, {
-                                mamState: info.state
-                            });
-                        } else {
-                            info = await attachToTangle(json, info.state);
-
-                            await Product.updateOne({_id: createdProduct._id}, {
-                                mamState: info.state
-                            });
-                        }
-                    }
-                }
-            }
+            await Product.updateOne({_id: createdProduct._id}, {
+                mamState: info.state,
+                first_root: info.root,
+                user_id: 0
+            });
         } else {
+    
+            info = await attachToTangle(body, existingProduct.mamState);
 
-            for (signalsIndex in req.body[0].signals)
-            {
-                if (req.body[0].signals[signalsIndex].UUID === 'temperature')
-                {
-                    for (logIndex in req.body[0].signals[signalsIndex].logs) {
-                        json = {
-                            UUID: req.body[0].signals[signalsIndex].UUID,
-                            temp: req.body[0].signals[signalsIndex].logs[logIndex].value,
-                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
-                        };
-
-                        info = await attachToTangle(json, existingProduct.mamState);
-
-                        await Product.updateOne({_id: existingProduct._id}, {
-                            mamState: info.state
-                        });
-                    }
-
-                } else if (req.body[0].signals[signalsIndex].UUID === 'positionDOTS') {
-                    for (logIndex in req.body[0].signals[signalsIndex].logs) {
-                        json = {
-                            UUID: req.body[0].signals[signalsIndex].UUID,
-                            lat: req.body[0].signals[signalsIndex].logs[logIndex].value.lat,
-                            lon: req.body[0].signals[signalsIndex].logs[logIndex].value.lng,
-                            timestamp: Date.parse(req.body[0].signals[signalsIndex].logs[logIndex].date)
-                        };
-
-                        info = await attachToTangle(json, existingProduct.mamState);
-
-                        await Product.updateOne({_id: existingProduct._id}, {
-                            mamState: info.state
-                        });
-                    }
-                }
-            }
+            await Product.updateOne({_id: existingProduct._id}, {
+                mamState: info.state
+            });
         }
 
         response = {message: info};
