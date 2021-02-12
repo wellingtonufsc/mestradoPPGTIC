@@ -84,13 +84,13 @@ const ViewProduct = () => {
         {
             for (var signalIndex in message[i].signals)
             {
-                if (message[i].signals[signalIndex].UUID == "temperature") {
+                if (message[i].signals[signalIndex].UUID === "temperature") {
                     for (var logIndex in message[i].signals[signalIndex].logs) {
                         temp.push(message[i].signals[signalIndex].logs[logIndex].value);
                         timeTemp.push(Date.parse(message[i].signals[signalIndex].logs[logIndex].date)/1000);
                     }
-                } else if (message[i].signals[signalIndex].UUID == "positionDOTS") {
-                    for (var logIndex in message[i].signals[signalIndex].logs) {
+                } else if (message[i].signals[signalIndex].UUID === "positionDOTS") {
+                    for (logIndex in message[i].signals[signalIndex].logs) {
                         lat.push(message[i].signals[signalIndex].logs[logIndex].value.lat);
                         lon.push(message[i].signals[signalIndex].logs[logIndex].value.lng);
                         timeLoc.push(Date.parse(message[i].signals[signalIndex].logs[logIndex].date)/1000);
