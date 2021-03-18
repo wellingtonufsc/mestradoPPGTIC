@@ -119,7 +119,7 @@ const ViewProduct = () => {
             />
             {user && (
                 <div className="view-header">
-                    <h1 className="main-title" >{product.name} do {user} {product.destination ? ', fazendo o percurso' + product.destination : ''}</h1>
+                    <h1 className="main-title" >{product.name} do {user} {product.destination ? ', fazendo o percurso ' + product.destination : ''}</h1>
                     <div className="buttons">
                         <button className={view === true ? 'temperature active' : 'temperature'} onClick={() => setView(true)}>Temperatura</button>
                         <button className={view === false ? 'localization active' : 'localization'} onClick={() => setView(false)}>Localização</button>
