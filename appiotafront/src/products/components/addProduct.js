@@ -42,6 +42,10 @@ const AddProduct = props => {
                     errors.productName = 'Campo obrigatório!';
                 }
 
+                if (!values.destination) {
+                    errors.destination = 'Campo obrigatório!';
+                }
+
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
@@ -71,6 +75,9 @@ const AddProduct = props => {
                         </div>
                         <div className={'field ' + (touched.productName && errors.productName ? 'input-error' : '')} style={{marginBottom: "20px"}}>
                             <input type="text" name="productName" id="productName" required placeholder="Nome do Produto" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.productName} />
+                        </div>
+                        <div className={'field ' + (touched.destination && errors.destination ? 'input-error' : '')} style={{marginBottom: "20px"}}>
+                            <input type="text" name="destination" id="destination" required placeholder="Trajeto" autoComplete="off" onChange={handleChange} onBlur={handleBlur} value={values.destination} />
                         </div>
                         <div className="field space">
                             <input type="submit" value="Adicionar" disabled={isSubmitting}/>

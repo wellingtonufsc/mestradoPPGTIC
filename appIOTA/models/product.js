@@ -8,7 +8,8 @@ const productSchema = new Schema({
     mamState: { type: JSON },
     first_root: { type: String },
     device_id: { type: String, unique: true },
-    name: { type: String }
+    name: { type: String },
+    destination: { type: String }
 });
   
 productSchema.plugin(uniqueValidator);

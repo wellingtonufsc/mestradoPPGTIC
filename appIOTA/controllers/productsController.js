@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const Request = require('../models/request');
 const Configuration = require('../models/configuration');
 const Mam = require('@iota/mam');
 const { asciiToTrytes } = require('@iota/converter');
@@ -58,6 +59,12 @@ const addProductData = async (req, res) => {
     let response = {}, info = {};
 
     delete body['deviceUUID'];
+
+    let createdRequest = new Request({
+        request: body
+    });
+
+    createdRequest.save();
 
     try {
         if(!device) {
@@ -147,7 +154,7 @@ const loadConfig = async (req, res) => {
 }
 
 const selectProduct = async (req, res) => {
-    const { userId, deviceID, productName } = req.body;
+    const { userId, deviceID, productName, destination } = req.body;
     let response = {};
 
     try {
@@ -163,6 +170,10 @@ const selectProduct = async (req, res) => {
             throw new Error('nome do produto não escolhido!');
         }
 
+        if (!destination) {
+            throw new Error('informa o trajeto!');
+        }
+
         existingProduct = await Product.findOne({device_id: deviceID});
 
         if (!existingProduct) {
@@ -171,7 +182,8 @@ const selectProduct = async (req, res) => {
 
         await Product.updateOne({_id: existingProduct._id}, {
             user_id: userId,
-            name: productName
+            name: productName,
+            destination: destination
         });
 
         response = {message: 'Cadastrado com sucesso!'};
@@ -193,7 +205,7 @@ const view = async (req, res) => {
             throw new Error('ID do produto inválido');
         }
 
-        product = await Product.findOne({_id: productId}, {user_id: 1, first_root: 1, name: 1});
+        product = await Product.findOne({_id: productId}, {user_id: 1, first_root: 1, name: 1, destination: 1});
 
         if (!product) {
             throw new Error('Produto não encontrado');

@@ -8,6 +8,16 @@ import {
   } from 'react-vis';
 import './Temperature.scss';
 
+function compare( a, b ) {
+    if ( a.timestamp < b.timestamp ){
+      return -1;
+    }
+    if ( a.timestamp > b.timestamp ){
+      return 1;
+    }
+    return 0;
+  }
+
 const Temperature = props => {
 
     const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(props.config.mam_provider)}&mode=${props.config.mode}&root=`
@@ -19,8 +29,11 @@ const Temperature = props => {
         let data2 = [];
 
         props.time.forEach((element, index) => {
-            data2.push({x: (new Date(props.time[index] * 1000)).toLocaleString() , y: props.temp[index]});
+            data2.push({x: (new Date(props.time[index] * 1000)).toLocaleString() , y: props.temp[index], timestamp: props.time[index]});
         });
+
+        data2 = data2.sort(compare);
+        data2.forEach(function(v){ delete v.timestamp })
 
         setData(data2)
         
