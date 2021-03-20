@@ -58,13 +58,13 @@ const addProductData = async (req, res) => {
     let body = req.body[0];
     let response = {}, info = {};
 
-    delete body['deviceUUID'];
-
     let createdRequest = new Request({
         request: body
     });
 
     createdRequest.save();
+
+    delete body['deviceUUID'];
 
     try {
         if(!device) {
