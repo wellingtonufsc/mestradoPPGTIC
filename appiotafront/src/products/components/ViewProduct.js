@@ -68,7 +68,7 @@ const ViewProduct = () => {
                     setMessage(Object.assign({}, msgs));
                 }
 
-                setTimeout(addListenerMam(), 3000);
+                setTimeout(addListenerMam(), 10000);
             }
     
             addListenerMam()
