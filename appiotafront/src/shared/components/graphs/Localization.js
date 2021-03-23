@@ -35,13 +35,13 @@ const Localization = props => {
 
     return (
         <div className="half">
-            <ReactMapGL 
+            {props.time.length > 0 ? <ReactMapGL 
                 {...viewport}
                 onViewportChange={nextViewport => setViewport(nextViewport)}
                 mapStyle="mapbox://styles/mapbox/dark-v9"
                 mapboxApiAccessToken="pk.eyJ1IjoibWlydHMiLCJhIjoiY2toY2w5NjV5MDg1dzJ5cXNodnE1dmwyMyJ9.gI64rXBrrb-WQ-g_YixScw"
             >
-                {props.time.map((data, index) => (
+                {props.time.length > 0 && props.time.map((data, index) => (
                     <Marker 
                     key={index}
                     latitude={parseFloat(parseFloat(props.lat[index]).toFixed(4))} 
@@ -56,7 +56,7 @@ const Localization = props => {
                         </div>
                     </Marker>
                 ))}
-            </ReactMapGL>
+            </ReactMapGL> : <h1>Sem dados de localização ainda.</h1>}
         </div>
     );
 }

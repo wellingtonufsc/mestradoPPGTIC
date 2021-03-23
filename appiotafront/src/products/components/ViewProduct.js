@@ -114,9 +114,6 @@ const ViewProduct = () => {
 
     return (
         <div className="view-page" >
-            <ToastContainer 
-                position="top-center"
-            />
             {user && (
                 <div className="view-header">
                     <h1 className="main-title" >{product.name} do {user} {product.destination ? ', fazendo o percurso ' + product.destination : ''}</h1>

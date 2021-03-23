@@ -28,20 +28,22 @@ const Temperature = props => {
     useEffect(() => {
         let data2 = [];
 
-        props.time.forEach((element, index) => {
-            data2.push({x: (new Date(props.time[index] * 1000)).toLocaleString() , y: props.temp[index], timestamp: props.time[index]});
-        });
-
-        data2 = data2.sort(compare);
-        data2.forEach(function(v){ delete v.timestamp })
-
-        setData(data2)
+        if (props.time.length > 0) {
+            props.time.forEach((element, index) => {
+                data2.push({x: (new Date(props.time[index] * 1000)).toLocaleString() , y: props.temp[index], timestamp: props.time[index]});
+            });
+    
+            data2 = data2.sort(compare);
+            data2.forEach(function(v){ delete v.timestamp })
+    
+            setData(data2)
+        }
         
     }, [props]);
 
     return (
         <div className="half">
-            <FlexibleWidthXYPlot height={400} xType="ordinal" onMouseLeave={() => {setValue(null)}} >
+            {data.length > 0 ? <FlexibleWidthXYPlot height={400} xType="ordinal" onMouseLeave={() => {setValue(null)}} >
                 <XAxis title="Datas" tickLabelAngle={-45}/>
                 <YAxis title="Temperatura ºC" />
                 <LineMarkSeries data={data} onNearestXY={(datapoint, event)=>{setValue(datapoint)}} />
@@ -67,7 +69,7 @@ const Temperature = props => {
                         </div>
                     </Hint>
                 )}
-            </FlexibleWidthXYPlot>
+            </FlexibleWidthXYPlot> : <h1>Sem dados de temperatura ainda</h1>}
             <a className="link-comprove" href={mamExplorerLink + props.root} target="_blank" rel="noopener noreferrer" >Comprove</a>
         </div>
     );
