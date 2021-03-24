@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import Temperature from '../../shared/components/graphs/Temperature';
 import Localization from '../../shared/components/graphs/Localization';
@@ -8,20 +8,25 @@ import './ViewProduct.scss';
 
 const Mam = require('@iota/mam');
 const { trytesToAscii } = require('@iota/converter');
+var timeouts = [];
 
 const ViewProduct = () => {
+
+    const { productId } = useParams();
 
     const [view, setView] = useState(true);
     const [product, setProduct] = useState(null);
     const [config, setConfig] = useState(null);
     const [user, setUser] = useState(null);
     const [message, setMessage] = useState({});
-    const productID = useParams().productId;
 
     useEffect(() => {
+        timeouts.forEach(clearTimeout);
         setMessage({});
+        setProduct(null);
+
         async function getProduct() {
-            api.get('/products/view/' + productID)
+            api.get('/products/view/' + productId)
                 .then((response) => {
                     api.get('/users/view/' + response.data.product.user_id)
                         .then((response) => {
@@ -38,6 +43,12 @@ const ViewProduct = () => {
                 });
         }
 
+        getProduct();
+    }, [productId]);
+
+    useEffect(() => {
+        setConfig(null);
+
         async function getConfig() {
             api.get('/products/loadConfig')
                 .then((response) => {
@@ -48,9 +59,8 @@ const ViewProduct = () => {
                 });
         }
 
-        getProduct();
         getConfig();
-    }, [productID]);
+    }, []);
 
     useEffect(() => {
         if (product && config) {
@@ -68,7 +78,7 @@ const ViewProduct = () => {
                     setMessage(Object.assign({}, msgs));
                 }
 
-                setTimeout(addListenerMam(), 10000);
+                timeouts.push(setTimeout(addListenerMam, 5000));
             }
     
             addListenerMam()
@@ -114,7 +124,7 @@ const ViewProduct = () => {
 
     return (
         <div className="view-page" >
-            {user && (
+            {user && product && (
                 <div className="view-header">
                     <h1 className="main-title" >{product.name} do {user} {product.destination ? ', fazendo o percurso ' + product.destination : ''}</h1>
                     <div className="buttons">

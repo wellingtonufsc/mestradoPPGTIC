@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import { AuthContext } from '../../shared/context/auth-context';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 import './addProduct.scss';
 
@@ -65,9 +65,6 @@ const AddProduct = props => {
                 isSubmitting
             }) => (
                 <div className="form-container">
-                    <ToastContainer 
-                        position="top-center"
-                    />
                     <header>Cadastrar uma Viagem</header>
                     <form onSubmit={handleSubmit} >
                         <div className={'field ' + (touched.deviceID && errors.deviceID ? 'input-error' : '')}>

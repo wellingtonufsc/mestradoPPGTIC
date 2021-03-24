@@ -205,7 +205,7 @@ const view = async (req, res) => {
             throw new Error('ID do produto inválido');
         }
 
-        product = await Product.findOne({_id: productId}, {user_id: 1, first_root: 1, name: 1, destination: 1});
+        product = await Product.findOne({_id: productId}, {user_id: 1, first_root: 1, name: 1, destination: 1, mamState: 1});
 
         if (!product) {
             throw new Error('Produto não encontrado');
