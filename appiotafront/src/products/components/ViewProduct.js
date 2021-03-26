@@ -8,20 +8,19 @@ import './ViewProduct.scss';
 
 const Mam = require('@iota/mam');
 const { trytesToAscii } = require('@iota/converter');
-var timeouts = [];
 
 const ViewProduct = () => {
 
+    var interval = null;
     const { productId } = useParams();
 
-    const [view, setView] = useState(true);
+    const [view, setView] = useState(false);
     const [product, setProduct] = useState(null);
     const [config, setConfig] = useState(null);
     const [user, setUser] = useState(null);
     const [message, setMessage] = useState({});
 
     useEffect(() => {
-        timeouts.forEach(clearTimeout);
         setMessage({});
         setProduct(null);
 
@@ -44,6 +43,7 @@ const ViewProduct = () => {
         }
 
         getProduct();
+
     }, [productId]);
 
     useEffect(() => {
@@ -64,8 +64,10 @@ const ViewProduct = () => {
 
     useEffect(() => {
         if (product && config) {
+
+            Mam.init(config.mam_provider);
+
             async function addListenerMam() {
-                Mam.init(config.mam_provider);
                 const result = await Mam.fetch(product.first_root, config.mam_mode);
                 let msgs = [];
     
@@ -77,12 +79,13 @@ const ViewProduct = () => {
 
                     setMessage(Object.assign({}, msgs));
                 }
-
-                timeouts.push(setTimeout(addListenerMam, 5000));
             }
     
-            addListenerMam()
+            addListenerMam();
+            // interval = setInterval(addListenerMam, 2000);
         }
+
+        return () => clearInterval(interval)
     }, [product, config]);
 
     let page = <div className="graphs"><h1>Carregando Dados...</h1></div>;
@@ -115,7 +118,7 @@ const ViewProduct = () => {
             </div>;
         } else {
             page = <div className="graphs">
-                <Localization lat={lat} lon={lon} time={timeLoc} root={product.first_root} config={config} />
+                <Localization lat={lat} lon={lon} time={timeLoc} temp={temp} timeTemp={timeTemp} root={product.first_root} config={config} />
             </div>;
         }
     } else {
@@ -126,7 +129,11 @@ const ViewProduct = () => {
         <div className="view-page" >
             {user && product && (
                 <div className="view-header">
-                    <h1 className="main-title" >{product.name} do {user} {product.destination ? ', fazendo o percurso ' + product.destination : ''}</h1>
+                    <div className="main-title">
+                        <h1>Produto em transaporte: {product.name}</h1>
+                        <h1>Trajeto: {product.destination}</h1>
+                        <h1>Distribuidor: {user}</h1>
+                    </div>
                     <div className="buttons">
                         <button className={view === true ? 'temperature active' : 'temperature'} onClick={() => setView(true)}>Temperatura</button>
                         <button className={view === false ? 'localization active' : 'localization'} onClick={() => setView(false)}>Localização</button>

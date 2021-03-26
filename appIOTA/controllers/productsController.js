@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 const Request = require('../models/request');
+const State = require('../models/state');
 const Configuration = require('../models/configuration');
 const Mam = require('@iota/mam');
 const { asciiToTrytes } = require('@iota/converter');
@@ -71,6 +72,10 @@ const addProductData = async (req, res) => {
             throw new Error('Device field empty!');
         }
 
+        if (body.signals[0].UUID == "batteryTX") {
+            throw new Error('Não queremos salvar bateria');
+        }
+
         existingProduct = await Product.findOne({device_id: device});
 
         if (!existingProduct) {
@@ -126,11 +131,21 @@ async function attachToTangle(jsonData, mam_state = null) {
 
     mamState = message.state;
 
-    await Mam.attach(message.payload, message.address, 3, 10);
+    let transactions = await Mam.attach(message.payload, message.address, 3, 10);
+
+    let createdState = new State({
+        state: mamState
+    });
+
+    await createdState.save();
 
     let info = {};
     info.state = mamState;
     info.root = message.root;
+
+    if (transactions.length == 0) {
+        throw new Error('erro ao salvar a transação no Tangle');
+    }
 
     return info;
 };

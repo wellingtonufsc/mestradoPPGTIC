@@ -33,6 +33,19 @@ const Localization = props => {
         ...bounds
     });
 
+    function pegaTemperaturaPerto(data) {
+        if (props.temp.length < 1) return '';
+
+        let temperaturaMaisPerto = 0;
+        let diferenca = 999999;
+
+        for (let i = 0; i < props.temp.length; i++) {
+            if (diferenca > Math.abs(props.timeTemp[i] - data)) temperaturaMaisPerto = props.temp[i];
+        }
+
+        return temperaturaMaisPerto;
+    }
+
     return (
         <div className="half">
             {props.time.length > 0 ? <ReactMapGL 
@@ -52,6 +65,7 @@ const Localization = props => {
                         <div className="custom-pin">
                             <img src={'/img/marker-' + (index === 0 ? "red" : (index === props.time.length - 1 ? "green" : "blue")) + '.png'} alt="Gem" />
                             <span>{(new Date(data * 1000)).toLocaleString()}</span>
+                            <span className="temp">Temp.:{pegaTemperaturaPerto(data)}ºC</span>
                             <a href={mamExplorerLink + props.root} target="_blank" rel="noopener noreferrer" >Comprove</a>
                         </div>
                     </Marker>
