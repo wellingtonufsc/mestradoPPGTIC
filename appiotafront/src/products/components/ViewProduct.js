@@ -69,6 +69,14 @@ const ViewProduct = () => {
 
             async function addListenerMam() {
                 const result = await Mam.fetch(product.first_root, config.mam_mode);
+
+                let newState = Mam.subscribe(product.mamState, Mam.getRoot(product.mamState), config.mam_mode);
+
+                function dataLog (data) {
+                    console.log(data)
+                }
+                Mam.listen(newState.subscribed[Mam.getRoot(product.mamState)], dataLog)
+                
                 let msgs = [];
     
                 if (result && result.messages) {
