@@ -109,7 +109,7 @@ const addProductData = async (req, res) => {
         res.status(500);
     }
 
-    res.json(response);
+    return res.send();
 };
 
 async function loadConfiguration() {
