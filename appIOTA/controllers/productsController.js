@@ -60,7 +60,8 @@ const addProductData = async (req, res) => {
     let response = {}, info = {};
 
     let createdRequest = new Request({
-        request: body
+        request: body,
+        hora_que_chegou: new Date()
     });
 
     createdRequest.save();
@@ -77,7 +78,6 @@ const addProductData = async (req, res) => {
         }
 
         existingProduct = await Product.findOne({device_id: device});
-        console.log(existingProduct);
 
         if (!existingProduct) {
             let createdProduct = new Product({
@@ -86,10 +86,8 @@ const addProductData = async (req, res) => {
 
             createdProduct = await createdProduct.save();
 
-            console.log('enviando ao tangle');
             info = await attachToTangle(body);
 
-            console.log('atualizando....');
             await Product.updateOne({_id: createdProduct._id}, {
                 mamState: info.state,
                 first_root: info.root,
@@ -137,7 +135,8 @@ async function attachToTangle(jsonData, mam_state = null) {
     let transactions = await Mam.attach(message.payload, message.address, 3, 14);
 
     let createdState = new State({
-        state: mamState
+        state: mamState,
+        hora_que_chegou: new Date()
     });
 
     await createdState.save();
