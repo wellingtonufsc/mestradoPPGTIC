@@ -62,7 +62,7 @@ app.use(bodyParser.urlencoded({
   }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use(extendTimeoutMiddleware);
+// app.use(extendTimeoutMiddleware);
 
 app.use('/api/users', require("./routes/usersRoutes" ));
 app.use('/api/products', require("./routes/productsRoutes"));
