@@ -44,6 +44,7 @@ const extendTimeoutMiddleware = (req, res, next) => {
       }, 20000);
     };
   
+    res.write(space);
     waitAndSend();
     next();
 };
