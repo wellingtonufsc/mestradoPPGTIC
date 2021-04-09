@@ -84,7 +84,7 @@ const ViewProduct = () => {
             }
     
             addListenerMam();
-            // interval = setInterval(addListenerMam, 2000);
+            interval = setInterval(addListenerMam, 10000);
         }
 
         return () => clearInterval(interval)
