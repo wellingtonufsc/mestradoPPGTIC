@@ -1,6 +1,32 @@
 import React, { useState } from 'react';
 import ReactMapGL, {Marker, WebMercatorViewport } from 'react-map-gl';
+import { getScaleObjectFromProps } from 'react-vis/dist/utils/scales-utils';
 import './Localization.scss';
+
+function compare( a, b ) {
+    if ( a.timestamp < b.timestamp ){
+      return 1;
+    }
+    if ( a.timestamp > b.timestamp ){
+      return -1;
+    }
+    return 0;
+}
+
+function sortProps( props ) {
+    let list = [];
+
+    for (var j = 0; j < props.time.length; j++) 
+        list.push({'timestamp': props.time[j], 'lat': props.lat[j], 'lon': props.lon[j]});
+
+    list.sort(compare)
+
+    for (var k = 0; k < list.length; k++) {
+        props.time[k] = list[k].timestamp;
+        props.lat[k] = list[k].lat;
+        props.lon[k] = list[k].lon;
+    }
+}
 
 const applyToArray = (func, array) => func.apply(Math, array)
 
@@ -22,6 +48,7 @@ const getBoundsForPoints = (points) => {
 }
 
 const Localization = props => {
+    sortProps(props)
     const bounds = getBoundsForPoints(props)
 
     const mamExplorerLink = `https://mam-explorer.firebaseapp.com/?provider=${encodeURIComponent(props.config.mam_provider)}&mode=${props.config.mode}&root=`
