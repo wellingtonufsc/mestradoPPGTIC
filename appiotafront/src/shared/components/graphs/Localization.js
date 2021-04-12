@@ -90,7 +90,7 @@ const Localization = props => {
                     offsetLeft={-15}
                     >
                         <div className="custom-pin">
-                            <img src={'/img/marker-' + (index === 0 ? "red" : (index === props.time.length - 1 ? "green" : "blue")) + '.png'} alt="Gem" />
+                            <img src={'/img/marker-' + (index === 0 ? "red" : (index === props.time.length - 1 ? "green" : "blue")) + '.png'} alt="Gem" className={(index === 0 ? "red" : (index === props.time.length - 1 ? "green" : "blue"))} />
                             <span>{(new Date(data * 1000)).toLocaleString()}</span>
                             <span className="temp">Temp.:{pegaTemperaturaPerto(data)}ºC</span>
                             <a href={mamExplorerLink + props.root} target="_blank" rel="noopener noreferrer" >Comprove</a>

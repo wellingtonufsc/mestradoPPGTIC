@@ -44,7 +44,13 @@ const Temperature = props => {
     return (
         <div className="half">
             {data.length > 0 ? <FlexibleWidthXYPlot height={400} xType="ordinal" onMouseLeave={() => {setValue(null)}} >
-                <XAxis title="Datas" tickLabelAngle={-45}/>
+                <XAxis title="Datas" tickLabelAngle={-45} padding={10} tickFormat={(t, i) => {
+            if ((i + 1) % 6 === 0) {
+              return t.split(',')[0];
+            } else {
+              return;
+            }
+          }} />
                 <YAxis title="Temperatura ºC" />
                 <LineMarkSeries data={data} onNearestXY={(datapoint, event)=>{setValue(datapoint)}} />
                 {value && (
